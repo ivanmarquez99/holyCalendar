@@ -12,15 +12,16 @@
                   <h4 class="mt-1 mb-5 pb-1"><span class="text-primary">holy</span>Calendar</h4>
                 </div>
 
-                <form>
+                <form action="UsuarioController.php" method="POST">
                   <p>Por favor, conéctate con tu cuenta</p>
+                  
 
                   <div class="mb-4">
-                    <input type="email" id="form2Example11" class="form-control" placeholder="Email o usuario" />
+                    <input type="email" name="user" class="form-control" placeholder="Email o usuario" />
                   </div>
 
                   <div class="mb-4">
-                    <input type="password" id="form2Example22" class="form-control" placeholder="Contraseña" />
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña" />
                   </div>
 
                   <div class="text-center d-flex flex-d flex-column pt-1 mb-5 pb-1">
