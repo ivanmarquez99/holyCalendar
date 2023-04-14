@@ -1,15 +1,11 @@
 <?php
-require '../models/Usuario.php';
-class UsuarioController extends Usuario {
 
+class UsuarioController {
+    
     public function LoginView() {
-        require '../views/Usuario/Login.php';
+        $view=\View::instance();
+        echo $view->render('Usuario\login.html','text/html');
     }
-}
-
-if(isset($_GET['action']) && $_GET['action']=='login') {
-    $instanciaControlador = new UsuarioController();
-    $instanciaControlador->LoginView();
-
+    
 }
 ?>
