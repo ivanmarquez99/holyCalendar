@@ -1,4 +1,3 @@
-<include href="{{ '../templates/layout/'.@header }}" />
 <section class="vh-100 gradient-form login">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -14,7 +13,7 @@
 
                 <form action="UsuarioController.php" method="POST">
                   <p>Por favor, conéctate con tu cuenta</p>
-                  
+
 
                   <div class="mb-4">
                     <input type="email" name="user" class="form-control" placeholder="Email o usuario" />
@@ -31,7 +30,7 @@
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">¿No tienes cuenta?</p>
-                    <button type="button" class="btn btn-outline-dark">Regístrate</button>
+                    <button type="button" class="btn btn-outline-dark" id="register">Regístrate</button>
                   </div>
 
                 </form>
@@ -41,7 +40,8 @@
             <div class="col-lg-6 d-flex align-items-center bg-dark rounded-end">
               <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                 <h4 class="mb-4">De cofrade para cofrades...</h4>
-                <p class="small mb-0">Enterate en todo momento de los eventos de tu cofradía sin necesidad de tener que estar escribiendo por el grupo de tu junta molestando.
+                <p class="small mb-0">Enterate en todo momento de los eventos de tu cofradía sin necesidad de tener que
+                  estar escribiendo por el grupo de tu junta molestando.
                   Desde aquí te podrás apuntar cómodamente y ver todo de un vistazo
                 </p>
               </div>
@@ -52,4 +52,3 @@
     </div>
   </div>
 </section>
-<include href="{{ '../templates/layout/'.@footer }}" />
