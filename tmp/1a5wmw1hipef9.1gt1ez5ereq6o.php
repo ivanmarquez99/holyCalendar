@@ -1,4 +1,4 @@
-<include href="{{ '../templates/layout/'.@header }}" />
+<?php echo $this->render('../templates/layout/'.$header,NULL,get_defined_vars(),0); ?>
 <section class="vh-100 gradient-form login">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -19,20 +19,21 @@
 
                 <div class="text-center">
                   <h4 class="mt-1 mb-5 pb-1"><span class="text-primary">holy</span>Calendar</h4>
-                  {{ @error }}
+                  <?= ($error)."
+" ?>
                 </div>
 
                 <form action="" method="post">
                   <div class="mb-3">
-                    <input type="text" name="usuario" class="form-control" placeholder="Usuario"  value="{{ @nombre }}" required/>
+                    <input type="text" name="usuario" class="form-control" placeholder="Usuario"  value="<?= ($nombre) ?>" required/>
                   </div>
 
                   <div class="mb-3">
-                    <input type="email" name="correo" class="form-control" placeholder="Email" value="{{ @email }}" required/>
+                    <input type="email" name="correo" class="form-control" placeholder="Email" value="<?= ($email) ?>" required/>
                   </div>
 
                   <div class="mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Contraseña" value="{{ @password }}" required/>
+                    <input type="password" name="password" class="form-control" placeholder="Contraseña" value="<?= ($password) ?>" required/>
                   </div>
 
                   <div class="text-center d-flex flex-d flex-column pt-1 mb-5 pb-1">
