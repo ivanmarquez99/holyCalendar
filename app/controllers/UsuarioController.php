@@ -12,13 +12,12 @@ class UsuarioController extends Controller
       $error = $this->validarRegistro($nombre, $correo, $password);
 
       if (!$error) {
-        // Insertar el registro en la base de datos
-        $query = "INSERT INTO users (nombre_usuario, email, password, rol) VALUES (:nombre, :correo, :pass, :rol)";
-        $params = array(':nombre' => $nombre, ':correo' => $correo, ':pass' => password_hash($password, PASSWORD_DEFAULT), ':rol' => 'visitante');
-        $f3->get('DB')->exec($query, $params);
+
+        $usuario = new Usuario($this->db);
+        $usuario->insertar($nombre, $correo, $password);
 
         // Redirigir al usuario a una página de éxito
-        $this->exito($f3);
+        $f3->reroute('/exito');
       } else {
         // Mostrar el formulario de registro con los errores
         $f3->set('error', $error);
