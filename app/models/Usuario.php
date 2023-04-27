@@ -24,4 +24,22 @@ class Usuario extends \DB\SQL\Mapper {
         $this->load(array('nombre_usuario=?',$nombre));
 	    return $this->query;
     }
+
+    public function getByEmail($email)
+	{
+		$this->load(array('email=?', $email));
+		$this->copyTo('POST');
+	}
+	
+	public function getById($id) 
+	{
+		$this->load(array('id=?',$id));
+		$this->copyTo('POST');
+	}
+	
+	public function login($id) 
+	{
+		$this->load(array('id=?',$id));
+		$this->copyTo('SESSION');
+	}
 }
