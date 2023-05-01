@@ -16,7 +16,7 @@
 
 
                   <div class="mb-4">
-                    <input type="text" name="user" class="form-control" placeholder="usuario" />
+                    <input type="text" name="user" class="form-control" placeholder="Usuario" />
                   </div>
 
                   <div class="mb-4">

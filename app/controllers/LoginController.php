@@ -6,7 +6,7 @@ class LoginController extends Controller
   public function login($f3) {
 
     if ($f3->get('SESSION.user_id')) {
-      $f3->reroute('/');
+      $f3->reroute('/agenda');
     }
     
     if ($f3->VERB == 'POST') {
@@ -15,17 +15,17 @@ class LoginController extends Controller
     $password = $f3->get('POST.password');
 
     // Buscar el usuario en la base de datos
-    $user = new DB\SQL\Mapper($f3->get('DB'), 'users');
-    $user->load(array('nombre_usuario = ?', $username));
+    $user = new Usuario($this->db);
+    $user ->getByName($username);
 
     // Verificar si el usuario existe y si la contraseña es correcta
     if ($user->dry() || !password_verify($password, $user->password)) {
       $f3->set('SESSION.login_error', 'Nombre de usuario o contraseña incorrectos.');
-      $f3->reroute('/login');
+      $f3->reroute('/');
     } else {
       // Iniciar sesión y redirigir al usuario a la página de inicio
       $f3->set('SESSION.user_id', $user->id);
-      $f3->reroute('/exito');
+      $f3->reroute('/agenda');
     }
   }
 

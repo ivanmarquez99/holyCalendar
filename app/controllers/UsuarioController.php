@@ -4,6 +4,12 @@ class UsuarioController extends Controller
 {
 
   function register($f3){
+
+    $f3->set('error', '');
+    $f3->set('nombre', '');
+    $f3->set('email', '');
+    $f3->set('password', '');
+
     if ($f3->VERB == 'POST') {
       $nombre = $f3->get('POST.usuario');
       $correo = $f3->get('POST.correo');

@@ -16,7 +16,7 @@ class Usuario extends \DB\SQL\Mapper {
         $this->db->exec('INSERT INTO users (nombre_usuario,email,password,rol) 
         VALUES(:nombre,:correo,:password,:rol)',
         array(':nombre'=>$nombre,':correo'=>$correo,'password'=>password_hash($password, PASSWORD_DEFAULT),
-        ':rol'=>'visitante'));
+        ':rol'=>1));
     }
 
     function getByName($nombre)
