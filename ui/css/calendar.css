@@ -1,5 +1,21 @@
-
-
 body {
   overflow: hidden;
+}
+
+#tools {
+  height: 5vh;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  margin: 1.5em;
+}
+
+.fc-daygrid-day-number {
+  color: black;
+  text-decoration: none;
+}
+
+table.fc-col-header a {
+  text-decoration: none !important;
+  text-transform: uppercase;
 }

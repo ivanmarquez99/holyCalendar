@@ -68,4 +68,9 @@ class UsuarioController extends Controller
     echo \Template::instance()->render('../templates/layout/footer.htm');
   }
 
+  function disconnect($f3){
+    $f3->clear('SESSION.user_id');
+    $f3->reroute('/');
+  }
+
 }
