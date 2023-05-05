@@ -1,6 +1,6 @@
 <?php
 
-class UsuarioController extends Controller
+class RegistroController extends Controller
 {
 
   function register($f3){
@@ -23,7 +23,9 @@ class UsuarioController extends Controller
         $usuario->insertar($nombre, $correo, $password);
 
         // Redirigir al usuario a una página de éxito
-        $f3->reroute('/exito');
+        $f3->set('SESSION.user_id', $usuario->id);
+        $f3->set('SESSION.user_rol', $usuario->rol);
+        $f3->reroute('/agenda');
       } else {
         // Mostrar el formulario de registro con los errores
         $f3->set('error', $error);
@@ -44,6 +46,9 @@ class UsuarioController extends Controller
   private function validarRegistro($nombre, $email, $password) {
     $error = '';
 
+    $user = new Usuario($this->db);
+    $user ->getByName($nombre);
+
     if (empty($nombre)) {
       $error = 'El nombre es obligatorio.';
     } elseif (strlen($nombre) > 100) {
@@ -57,15 +62,6 @@ class UsuarioController extends Controller
     }
 
     return $error;
-  }
-
-  function exito($f3){
-    $f3->set('tituloPagina', 'Exito en el registro');
-    $f3->set('header', 'header.htm');
-    $f3->set('footer', 'footer.htm');
-    echo \Template::instance()->render('../templates/layout/header.htm');
-    echo \Template::instance()->render('Usuario/exito.htm');
-    echo \Template::instance()->render('../templates/layout/footer.htm');
   }
 
   function disconnect($f3){

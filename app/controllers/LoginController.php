@@ -5,11 +5,15 @@ class LoginController extends Controller
 
   public function login($f3) {
 
+    
+
     if ($f3->get('SESSION.user_id')) {
       $f3->reroute('/agenda');
     }
     
     if ($f3->VERB == 'POST') {
+    
+    $f3->set('SESSION.login_error', '');
     // Obtener las credenciales del usuario desde el formulario de inicio de sesión
     $username = $f3->get('POST.user');
     $password = $f3->get('POST.password');
@@ -36,7 +40,6 @@ class LoginController extends Controller
   echo \Template::instance()->render('../templates/layout/header.htm');
   echo \Template::instance()->render('Usuario/login.htm');
   echo \Template::instance()->render('../templates/layout/footer.htm');
-
   }
 
 }

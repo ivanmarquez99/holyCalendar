@@ -28,7 +28,7 @@ class Usuario extends \DB\SQL\Mapper {
     public function getByEmail($email)
 	{
 		$this->load(array('email=?', $email));
-		$this->copyTo('POST');
+		return $this->query;
 	}
 	
 	public function getById($id) 
@@ -42,4 +42,5 @@ class Usuario extends \DB\SQL\Mapper {
 		$this->load(array('id=?',$id));
 		$this->copyTo('SESSION');
 	}
+
 }
