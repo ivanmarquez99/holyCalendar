@@ -8,22 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
         firstDay: 1,
         selectable: true,
         events: events,
-        dateClick: function (info) {
-            alert('Date: ' + info.dateStr);
-        },
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridDay'
-        },
-        eventDidMount: function (info) {
-            console.log(info.event.extendedProps);
-            // {description: "Lecture", department: "BioChemistry"}
+            right: 'dayGridMonth,dayGridWeek'
         },
         buttonText: {
             today: 'Hoy',
             dayGridMonth: 'Mes',
-            timeGridDay: 'Día'
+            dayGridWeek: 'Semana'
         },
         eventClick: function(info) {
             document.getElementById('eventTitle').innerHTML = info.event.title;
