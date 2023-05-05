@@ -63,6 +63,23 @@
     </div>
   </div>
 <?php endif; ?>
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Fecha:</strong> <span id="eventDate"></span></p>
+        <p><strong>Hora de inicio:</strong> <span id="eventStart"></span></p>
+        <p><strong>Hora de fin:</strong> <span id="eventEnd"></span></p>
+        <p><strong>Descripción:</strong> <span id="eventDescription"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   var events = <?= ($this->raw($json_events)) ?>;
   // Aquí puedes utilizar la variable `events` para configurar FullCalendar

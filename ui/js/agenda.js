@@ -26,9 +26,21 @@ document.addEventListener('DOMContentLoaded', function () {
             timeGridDay: 'Día'
         },
         eventClick: function(info) {
-            alert('Event: ' + info.event.title);
-            alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            alert('View: ' + info.view.type);
+            document.getElementById('eventTitle').innerHTML = info.event.title;
+            document.getElementById('eventDate').innerHTML = moment(info.event.start).format('DD/MM/YYYY');
+            document.getElementById('eventStart').innerHTML = moment(info.event.start).format('HH:mm');
+            document.getElementById('eventEnd').innerHTML = moment(info.event.end).format('HH:mm');
+            document.getElementById('eventDescription').innerHTML = info.event.extendedProps.description;
+
+            let myModal = new bootstrap.Modal('#eventModal', {
+                keyboard: false
+              });
+              myModal.show();
+        },
+        eventTimeFormat: { // like '14:30'
+            hour: '2-digit',
+            minute: '2-digit',
+            meridiem: false
           }
     });
     calendar.render();

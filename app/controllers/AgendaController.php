@@ -44,7 +44,8 @@ class AgendaController extends Controller
         'title' => $evento['titulo'],
         'start' => $evento['fecha_inicio'] . 'T' . $evento['hora_inicio'],
         'end' => $evento['fecha_fin'] . 'T' . $evento['hora_fin'],
-        'color' => $evento['color']
+        'color' => $evento['color'],
+        'description' => $evento['descripcion']
       );
       array_push($eventos_formateados, $evento_formateado);
     }

@@ -19,3 +19,7 @@ table.fc-col-header a {
   text-decoration: none !important;
   text-transform: uppercase;
 }
+
+a.fc-event.fc-event-start.fc-event-end.fc-daygrid-event.fc-daygrid-dot-event {
+  cursor: pointer;
+}
