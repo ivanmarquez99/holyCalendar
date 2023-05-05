@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -6,17 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         locale: 'es',
         firstDay: 1,
         selectable: true,
-        events: [
-            {
-                title: 'BCH237',
-                start: '2023-05-01T10:30:00',
-                end: '2023-05-01T11:30:00',
-                extendedProps: {
-                    department: 'BioChemistry'
-                },
-                description: 'Lecture'
-            }
-        ],
+        events: events,
         dateClick: function (info) {
             alert('Date: ' + info.dateStr);
         },
@@ -34,6 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
             dayGridMonth: 'Mes',
             timeGridDay: 'Día'
         },
+        eventClick: function(info) {
+            alert('Event: ' + info.event.title);
+            alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+            alert('View: ' + info.view.type);
+          }
     });
     calendar.render();
 });
