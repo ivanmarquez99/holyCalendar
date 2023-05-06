@@ -34,4 +34,21 @@ class Evento extends \DB\SQL\Mapper
         // Devolver los resultados como un array
         return $this->query;
     }
+
+    public function deleteEvent($id)
+    {
+        $this->load(['id = ?', $id]);
+        if ($this->dry()) {
+            return false; // El evento no existe
+        }
+        $this->erase();
+
+        return true;
+    }
+
+    public function getEventbyId($id)
+    {
+        $this->load(['id = ?', $id]);
+        return $this->query;
+    }
 }

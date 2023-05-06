@@ -55,4 +55,64 @@ class AgendaController extends Controller
     // Devolver los datos en formato JSON
     $this->f3->set('json_events', $eventos_json);
   }
+
+  public function eliminarEvento($f3, $params)
+  {
+    $id = $params['id'];
+    $evento = new Evento($this->db);
+
+    if ($evento->deleteEvent($id)) {
+      // Redirigir a la página de eventos u otro destino deseado
+      $f3->reroute('/agenda');
+    }
+  }
+
+  public function editarEvento($f3, $params) {
+    // Obtener el ID del evento desde los parámetros de la ruta
+    $id = $params['id'];
+
+    // Obtener el evento a editar desde el modelo
+    $evento = new Evento($this->db);
+
+    $evento->getEventById($id);
+
+    // Renderizar la plantilla de edición de evento
+    $f3->set('evento', $evento);
+    $f3->set('tituloPagina', 'Editar evento seleccionado');
+    echo \Template::instance()->render('../templates/layout/header.htm');
+    echo \Template::instance()->render('Agenda/editar_evento.htm');
+    echo \Template::instance()->render('../templates/layout/footer.htm');
+  }
+
+  public function actualizarEvento($f3) {
+    // Obtener los datos del formulario
+    $id = $f3->get('POST.id');
+    $titulo = $f3->get('POST.titulo');
+    $descripcion = $f3->get('POST.descripcion');
+    $fecha_inicio = $f3->get('POST.fecha_inicio');
+    $hora_inicio = $f3->get('POST.hora_inicio');
+    $fecha_fin = $f3->get('POST.fecha_fin');
+    $hora_fin = $f3->get('POST.hora_fin');
+
+    $evento = new Evento($this->db);
+    // Obtener el evento a actualizar desde el modelo
+    $evento->getEventbyId($id);
+    if ($evento->dry()) {
+        // El evento no existe
+        // Manejar el error apropiadamente (redirigir, mostrar mensaje, etc.)
+    }
+
+    // Actualizar los campos del evento
+    $evento->titulo = $titulo;
+    $evento->descripcion = $descripcion;
+    $evento->fecha_inicio = $fecha_inicio;
+    $evento->hora_inicio = $hora_inicio;
+    $evento->fecha_fin = $fecha_fin;
+    $evento->hora_fin = $hora_fin;
+    $evento->save();
+
+    // Redirigir a la página de eventos u otro destino deseado
+    $f3->reroute('/agenda');
+}
+
 }

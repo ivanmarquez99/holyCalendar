@@ -19,22 +19,30 @@ document.addEventListener('DOMContentLoaded', function () {
             dayGridWeek: 'Semana'
         },
         eventClick: function(info) {
+            info.event.id
             document.getElementById('eventTitle').innerHTML = info.event.title;
             document.getElementById('eventDate').innerHTML = moment(info.event.start).format('DD/MM/YYYY');
             document.getElementById('eventStart').innerHTML = moment(info.event.start).format('HH:mm');
             document.getElementById('eventEnd').innerHTML = moment(info.event.end).format('HH:mm');
             document.getElementById('eventDescription').innerHTML = info.event.extendedProps.description;
+            document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
+            document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
 
             let myModal = new bootstrap.Modal('#eventModal', {
                 keyboard: false
               });
               myModal.show();
         },
+        navLinks: true,
+        navLinkDayClick: function(date, jsEvent) {
+            calendar.changeView('timeGridDay', date);
+        },
         eventTimeFormat: { // like '14:30'
             hour: '2-digit',
             minute: '2-digit',
             meridiem: false
-          }
+        }
     });
     calendar.render();
+    
 });

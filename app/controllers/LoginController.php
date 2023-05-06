@@ -10,10 +10,11 @@ class LoginController extends Controller
     if ($f3->get('SESSION.user_id')) {
       $f3->reroute('/agenda');
     }
+   
+    $f3->set('SESSION.login_error', '');
     
     if ($f3->VERB == 'POST') {
     
-    $f3->set('SESSION.login_error', '');
     // Obtener las credenciales del usuario desde el formulario de inicio de sesión
     $username = $f3->get('POST.user');
     $password = $f3->get('POST.password');

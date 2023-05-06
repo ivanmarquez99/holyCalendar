@@ -2,3 +2,8 @@ section.login {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/login.jpg);
   background-size: cover;
 }
+
+#background {
+  background: url(../images/nazarenos-v+c.jpg);
+  background-size: cover;
+}
