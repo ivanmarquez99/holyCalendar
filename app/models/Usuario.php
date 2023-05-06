@@ -43,4 +43,15 @@ class Usuario extends \DB\SQL\Mapper {
 		$this->copyTo('SESSION');
 	}
 
+	public function inscribirseEvento($usuarioId, $eventId)
+    {
+        $this->db->exec(
+            'INSERT INTO users_events (usuario_id, evento_id) 
+        VALUES(:usuario_id, :evento_id)',
+            array(
+                ':usuario_id' => $usuarioId, ':evento_id' => $eventId
+            )
+        );
+    }
+
 }

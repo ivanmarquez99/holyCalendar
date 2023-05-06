@@ -36,7 +36,7 @@ class AgendaController extends Controller
     $eventos = new Evento($this->db);
     $events = $eventos->getEvents();
 
-    // Formatear los eventos en un arreglo que FullCalendar puede entender
+    // Formatear los eventos en un arreglo
     $eventos_formateados = array();
     foreach ($events as $evento) {
       $evento_formateado = array(
@@ -62,12 +62,13 @@ class AgendaController extends Controller
     $evento = new Evento($this->db);
 
     if ($evento->deleteEvent($id)) {
-      // Redirigir a la página de eventos u otro destino deseado
+      // Redirigir a la página de eventos
       $f3->reroute('/agenda');
     }
   }
 
-  public function editarEvento($f3, $params) {
+  public function editarEvento($f3, $params)
+  {
     // Obtener el ID del evento desde los parámetros de la ruta
     $id = $params['id'];
 
@@ -84,7 +85,8 @@ class AgendaController extends Controller
     echo \Template::instance()->render('../templates/layout/footer.htm');
   }
 
-  public function actualizarEvento($f3) {
+  public function actualizarEvento($f3)
+  {
     // Obtener los datos del formulario
     $id = $f3->get('POST.id');
     $titulo = $f3->get('POST.titulo');
@@ -98,8 +100,8 @@ class AgendaController extends Controller
     // Obtener el evento a actualizar desde el modelo
     $evento->getEventbyId($id);
     if ($evento->dry()) {
-        // El evento no existe
-        // Manejar el error apropiadamente (redirigir, mostrar mensaje, etc.)
+      // El evento no existe
+      // Manejar el error apropiadamente (redirigir, mostrar mensaje, etc.)
     }
 
     // Actualizar los campos del evento
@@ -111,8 +113,21 @@ class AgendaController extends Controller
     $evento->hora_fin = $hora_fin;
     $evento->save();
 
-    // Redirigir a la página de eventos u otro destino deseado
+    // Redirigir a la página de eventos
     $f3->reroute('/agenda');
-}
+  }
 
+  public function inscribirse($f3)
+    {
+      $usuarioId = $this->f3->get('POST.id-user');
+      $eventoId = $this->f3->get('POST.id-event');
+        // Obtenemos el id del usuario y del evento
+        // Crear una instancia del modelo Usuario
+        $usuario = new Usuario($this->db);
+
+        // Inscribir al usuario en el evento
+        $usuario->inscribirseEvento($usuarioId, $eventoId);
+
+        $f3->reroute('/agenda');
+    }
 }

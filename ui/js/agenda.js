@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+     var events = document.getElementById('prodId').value;
+     var arrEvents = JSON.parse(events)
+     console.log(arrEvents)
+
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -7,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         locale: 'es',
         firstDay: 1,
         selectable: true,
-        events: events,
+        events: arrEvents,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -19,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
             dayGridWeek: 'Semana'
         },
         eventClick: function(info) {
-            info.event.id
             document.getElementById('eventTitle').innerHTML = info.event.title;
             document.getElementById('eventDate').innerHTML = moment(info.event.start).format('DD/MM/YYYY');
             document.getElementById('eventStart').innerHTML = moment(info.event.start).format('HH:mm');
@@ -27,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('eventDescription').innerHTML = info.event.extendedProps.description;
             document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
             document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
+            document.getElementById('id-event').value = info.event.id;
 
             let myModal = new bootstrap.Modal('#eventModal', {
                 keyboard: false

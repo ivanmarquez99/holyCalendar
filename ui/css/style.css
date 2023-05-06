@@ -7,3 +7,8 @@ section.login {
   background: url(../images/nazarenos-v+c.jpg);
   background-size: cover;
 }
+
+button#apuntarse {
+  align-items: flex-start;
+  margin-right: auto;
+}
