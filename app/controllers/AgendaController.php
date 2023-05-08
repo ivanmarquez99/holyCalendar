@@ -97,15 +97,12 @@ class AgendaController extends Controller
     $hora_inicio = $f3->get('POST.hora_inicio');
     $fecha_fin = $f3->get('POST.fecha_fin');
     $hora_fin = $f3->get('POST.hora_fin');
+    $color = $f3->get('POST.color');
     $ubicacion = $f3->get('POST.ubicacion');
 
     $evento = new Evento($this->db);
     // Obtener el evento a actualizar desde el modelo
     $evento->getEventbyId($id);
-    if ($evento->dry()) {
-      // El evento no existe
-      // Manejar el error apropiadamente (redirigir, mostrar mensaje, etc.)
-    }
 
     // Actualizar los campos del evento
     $evento->titulo = $titulo;
@@ -115,6 +112,7 @@ class AgendaController extends Controller
     $evento->fecha_fin = $fecha_fin;
     $evento->hora_fin = $hora_fin;
     $evento->ubicacion = $ubicacion;
+    $evento->color = $color;
     $evento->save();
 
     // Redirigir a la página de eventos
@@ -122,10 +120,11 @@ class AgendaController extends Controller
   }
 
   public function inscribirse($f3)
-    {
-      $usuarioId = $this->f3->get('POST.id-user');
-      $eventoId = $this->f3->get('POST.id-event');
+    { 
         // Obtenemos el id del usuario y del evento
+        $usuarioId = $this->f3->get('POST.id-user');
+        $eventoId = $this->f3->get('POST.id-event');
+        
         // Crear una instancia del modelo Usuario
         $usuario = new Usuario($this->db);
 
