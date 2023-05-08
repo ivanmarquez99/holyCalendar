@@ -13,14 +13,15 @@ class Evento extends \DB\SQL\Mapper
         return $this->query;
     }
 
-    public function store($titulo, $descripcion, $fecha_inicio, $hora_inicio, $fecha_fin, $hora_fin, $color)
+    public function store($titulo, $descripcion, $fecha_inicio, $hora_inicio, $fecha_fin, $hora_fin, $color, $ubicacion)
     {
         $this->db->exec(
-            'INSERT INTO events (titulo, descripcion, fecha_inicio, hora_inicio, fecha_fin, hora_fin, color) 
-        VALUES(:titulo,:descripcion,:fecha_inicio,:hora_inicio, :fecha_fin, :hora_fin, :color)',
+            'INSERT INTO events (titulo, descripcion, fecha_inicio, hora_inicio, fecha_fin, hora_fin, color, ubicacion) 
+        VALUES(:titulo,:descripcion,:fecha_inicio,:hora_inicio, :fecha_fin, :hora_fin, :color, :ubicacion)',
             array(
                 ':titulo' => $titulo, ':descripcion' => $descripcion, 'fecha_inicio' => $fecha_inicio,
-                ':hora_inicio' => $hora_inicio, ':fecha_fin' => $fecha_fin, ':hora_fin' => $hora_fin, ':color' => $color
+                ':hora_inicio' => $hora_inicio, ':fecha_fin' => $fecha_fin, ':hora_fin' => $hora_fin, ':color' => $color,
+                ':ubicacion' => $ubicacion
             )
         );
     }

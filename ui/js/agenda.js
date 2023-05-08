@@ -28,9 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('eventStart').innerHTML = moment(info.event.start).format('HH:mm');
             document.getElementById('eventEnd').innerHTML = moment(info.event.end).format('HH:mm');
             document.getElementById('eventDescription').innerHTML = info.event.extendedProps.description;
+            document.getElementById('eventUbication').innerHTML = info.event.extendedProps.ubicacion;
+
             document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
             document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
             document.getElementById('id-event').value = info.event.id;
+            
 
             let myModal = new bootstrap.Modal('#eventModal', {
                 keyboard: false

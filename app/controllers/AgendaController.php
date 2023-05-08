@@ -13,10 +13,11 @@ class AgendaController extends Controller
       $fecha_fin = $this->f3->get('POST.fecha_fin');
       $hora_fin = $this->f3->get('POST.hora_fin');
       $color = $this->f3->get('POST.color');
+      $ubicacion = $this->f3->get('POST.ubicacion');
 
       $event = new Evento($this->db);
 
-      $event->store($titulo, $descripcion, $fecha_inicio, $hora_inicio, $fecha_fin, $hora_fin, $color);
+      $event->store($titulo, $descripcion, $fecha_inicio, $hora_inicio, $fecha_fin, $hora_fin, $color, $ubicacion);
     }
 
     if ($f3->get('SESSION.user_id')) {
@@ -45,6 +46,7 @@ class AgendaController extends Controller
         'start' => $evento['fecha_inicio'] . 'T' . $evento['hora_inicio'],
         'end' => $evento['fecha_fin'] . 'T' . $evento['hora_fin'],
         'color' => $evento['color'],
+        'ubicacion' => $evento['ubicacion'],
         'description' => $evento['descripcion']
       );
       array_push($eventos_formateados, $evento_formateado);
@@ -95,6 +97,7 @@ class AgendaController extends Controller
     $hora_inicio = $f3->get('POST.hora_inicio');
     $fecha_fin = $f3->get('POST.fecha_fin');
     $hora_fin = $f3->get('POST.hora_fin');
+    $ubicacion = $f3->get('POST.ubicacion');
 
     $evento = new Evento($this->db);
     // Obtener el evento a actualizar desde el modelo
@@ -111,6 +114,7 @@ class AgendaController extends Controller
     $evento->hora_inicio = $hora_inicio;
     $evento->fecha_fin = $fecha_fin;
     $evento->hora_fin = $hora_fin;
+    $evento->ubicacion = $ubicacion;
     $evento->save();
 
     // Redirigir a la página de eventos
