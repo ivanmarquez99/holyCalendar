@@ -54,4 +54,28 @@ class Usuario extends \DB\SQL\Mapper {
         );
     }
 
+    public function usuarioExiste($nombreUsuario)
+    {
+        // Realiza la consulta en la base de datos para verificar si el usuario ya existe
+        $result = $this->db->exec('SELECT COUNT(*) as count FROM users WHERE nombre_usuario = ?', $nombreUsuario);
+        
+        // Obtiene el resultado de la consulta
+        $count = $result[0]['count'];
+
+        // Retorna true si el usuario existe, false en caso contrario
+        return $count > 0;
+    }
+
+    public function emailExiste($email)
+    {
+        // Realiza la consulta en la base de datos para verificar si el email ya existe
+        $result = $this->db->exec('SELECT COUNT(*) as count FROM users WHERE email = ?', $email);
+        
+        // Obtiene el resultado de la consulta
+        $count = $result[0]['count'];
+
+        // Retorna true si el usuario existe, false en caso contrario
+        return $count > 0;
+    }
+
 }

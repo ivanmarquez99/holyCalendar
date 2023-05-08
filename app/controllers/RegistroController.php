@@ -47,12 +47,17 @@ class RegistroController extends Controller
     $error = '';
 
     $user = new Usuario($this->db);
-    $user ->getByName($nombre);
+    $username = $user->usuarioExiste($nombre);
+    $useremail = $user->emailExiste($email);
 
-    if (empty($nombre)) {
+    if ($username) {
+      $error = 'El usuario está en uso';
+    } elseif (empty($nombre)) {
       $error = 'El nombre es obligatorio.';
     } elseif (strlen($nombre) > 100) {
       $error = 'El nombre no puede tener más de 100 caracteres.';
+    } elseif ($useremail) {
+      $error = 'El email está en uso';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $error = 'El correo electrónico no es válido.';
     } elseif (empty($password)) {
