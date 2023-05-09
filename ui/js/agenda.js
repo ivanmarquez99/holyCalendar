@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
      var events = document.getElementById('prodId').value;
-     var arrEvents = JSON.parse(events)
-     console.log(arrEvents)
+     var participants = document.getElementById('signin').value;
+     var arrParticipants = JSON.parse(participants);
+     var arrEvents = JSON.parse(events);
+     console.log(arrEvents);
+     
 
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {

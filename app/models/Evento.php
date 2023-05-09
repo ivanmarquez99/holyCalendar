@@ -53,13 +53,4 @@ class Evento extends \DB\SQL\Mapper
         return $this->query;
     }
 
-    public function getParticipantes($idEvento) 
-    {
-        $this->db->exec(
-            'SELECT * FROM users_events WHERE evento_id = :idEvent',
-            array(
-                ':idEvent' => $idEvento
-            )
-        );
-    }
 }

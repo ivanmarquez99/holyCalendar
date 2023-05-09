@@ -21,7 +21,10 @@ class AgendaController extends Controller
     }
 
     if ($f3->get('SESSION.user_id')) {
-      echo ($this->getEvents());
+
+      $this->inscritos();
+      $this->getEvents();
+
       $f3->set('tituloPagina', 'holyCalendar');
       echo \Template::instance()->render('../templates/layout/header-agenda.htm');
       echo \Template::instance()->render('Agenda/agenda.htm');
@@ -120,17 +123,42 @@ class AgendaController extends Controller
   }
 
   public function inscribirse($f3)
-    { 
-        // Obtenemos el id del usuario y del evento
-        $usuarioId = $this->f3->get('POST.id-user');
-        $eventoId = $this->f3->get('POST.id-event');
-        
-        // Crear una instancia del modelo Usuario
-        $usuario = new Usuario($this->db);
+  {
+    // Obtenemos el id del usuario y del evento
+    $usuarioId = $this->f3->get('POST.id-user');
+    $eventoId = $this->f3->get('POST.id-event');
 
-        // Inscribir al usuario en el evento
-        $usuario->inscribirseEvento($usuarioId, $eventoId);
+    // Crear una instancia del modelo Usuario
+    $usuario = new Participantes($this->db);
 
-        $f3->reroute('/agenda');
+    // Inscribir al usuario en el evento
+    $usuario->inscribirseEvento($usuarioId, $eventoId);
+
+    $f3->reroute('/agenda');
+  }
+
+  public function inscritos()
+  {
+    // Crear una instancia del modelo de participantes
+    $participanteModel = new Participantes($this->db);
+
+    // Obtener todos los participantes
+    $participants = $participanteModel->getParticipantes();
+
+    $participantes_formateados = array();
+    foreach ($participants as $participante) {
+      $participante_formateado = array(
+        'id' => $participante['id'],
+        'usuario_id' => $participante['usuario_id'],
+        'evento_id' => $participante['evento_id']
+      );
+      array_push($participantes_formateados, $participante_formateado);
     }
+
+    $participantsJson = json_encode($participantes_formateados);
+
+    // Pasar los participantes a la vista
+    $this->f3->set('participants_json', $participantsJson);
+    return $participantsJson;
+  }
 }
