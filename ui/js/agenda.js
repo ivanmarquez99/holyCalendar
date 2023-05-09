@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dayGridWeek: 'Semana'
         },
         eventClick: function(info) {
+
             document.getElementById('eventTitle').innerHTML = info.event.title;
             document.getElementById('eventDate').innerHTML = moment(info.event.start).format('DD/MM/YYYY');
             document.getElementById('eventStart').innerHTML = moment(info.event.start).format('HH:mm');
@@ -37,11 +38,30 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
             document.getElementById('id-event').value = info.event.id;
             
+            var data = {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },                
+                body: JSON.stringify( [{ event: info.event.id, user: "2"}] )
+              }
 
-            let myModal = new bootstrap.Modal('#eventModal', {
-                keyboard: false
-              });
-              myModal.show();
+            fetch("checkUsersinEvent?user=2&event="+info.event.id,)
+            .then(res => res.json())
+            .then(
+                res => {
+                    console.log(res);
+
+                    document.querySelector("#apuntarse").disabled=res;
+
+                    let myModal = new bootstrap.Modal('#eventModal', {
+                        keyboard: false
+                    });
+                    myModal.show();
+                }
+            )
+            .catch( err => console.error(err))
         },
         navLinks: true,
         navLinkDayClick: function(date, jsEvent) {

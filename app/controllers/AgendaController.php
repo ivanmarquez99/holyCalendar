@@ -161,4 +161,19 @@ class AgendaController extends Controller
     $this->f3->set('participants_json', $participantsJson);
     return $participantsJson;
   }
+
+  public function checkUser($f3)
+  {
+    $data = [
+      "user" => $f3->get("REQUEST.user"),
+      "event" => $f3->get("REQUEST.event")
+    ];
+
+    $data = ($f3->get("REQUEST.event")==1);
+    
+    //print_r($data);
+
+    echo json_encode($data);
+
+  }
 }
