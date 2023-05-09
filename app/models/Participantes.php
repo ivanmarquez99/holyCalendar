@@ -26,6 +26,13 @@ class Participantes extends \DB\SQL\Mapper
             )
         );
     }
+
+    public function comprobarParticipante($usuarioId, $eventId)
+    {
+        $this->load(['usuario_id = ? AND evento_id = ?', $usuarioId, $eventId]);
+
+        return $this->query;
+    }
 }
 
 ?>

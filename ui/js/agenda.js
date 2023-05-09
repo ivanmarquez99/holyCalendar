@@ -33,21 +33,20 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('eventEnd').innerHTML = moment(info.event.end).format('HH:mm');
             document.getElementById('eventDescription').innerHTML = info.event.extendedProps.description;
             document.getElementById('eventUbication').innerHTML = info.event.extendedProps.ubicacion;
-
-            document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
-            document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
             document.getElementById('id-event').value = info.event.id;
-            
-            var data = {
-                method: "POST",
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                  },                
-                body: JSON.stringify( [{ event: info.event.id, user: "2"}] )
-              }
+            var id_user = document.getElementById('id-user').value
 
-            fetch("checkUsersinEvent?user=2&event="+info.event.id,)
+            var data = {
+                event: parseInt(info.event.id), 
+                user: parseInt(id_user)
+              };
+
+            fetch("agenda/comprobarasistencia", {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)})
             .then(res => res.json())
             .then(
                 res => {
@@ -62,6 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             )
             .catch( err => console.error(err))
+
+            document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
+            document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
         },
         navLinks: true,
         navLinkDayClick: function(date, jsEvent) {

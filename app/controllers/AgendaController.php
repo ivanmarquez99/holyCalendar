@@ -164,16 +164,17 @@ class AgendaController extends Controller
 
   public function checkUser($f3)
   {
-    $data = [
-      "user" => $f3->get("REQUEST.user"),
-      "event" => $f3->get("REQUEST.event")
-    ];
+    $evento = json_decode($f3->get('BODY'), true);
 
-    $data = ($f3->get("REQUEST.event")==1);
+    $event = $evento['event'];
+    $user = $evento['user'];
+
+    // Crear una instancia del modelo de participantes
+    $participante = new Participantes($this->db);
+
+    // Obtener todos los participantes
+    $check = $participante->comprobarParticipante($user, $event);
     
-    //print_r($data);
-
-    echo json_encode($data);
-
+    
   }
 }
