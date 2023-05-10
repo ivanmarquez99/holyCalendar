@@ -29,9 +29,11 @@ class Participantes extends \DB\SQL\Mapper
 
     public function comprobarParticipante($usuarioId, $eventId)
     {
-        $this->load(['usuario_id = ? AND evento_id = ?', $usuarioId, $eventId]);
+        // Realiza la consulta en la base de datos para verificar si el usuario ya existe
+        $count = $this->count(['usuario_id = ? AND evento_id = ?', $usuarioId, $eventId]);
 
-        return $this->query;
+        // Retorna true si el usuario existe, false en caso contrario
+        return $count > 0;
     }
 }
 
