@@ -20,7 +20,7 @@
 
 <body>
   <header>
-    <div id="tools" class="bg-primary d-flex flex-row-reverse align-items-center gap-3 px-3">
+    <div id="tools" class="bg-dark d-flex flex-row-reverse align-items-center gap-3 px-3">
       <a href="{{@BASE}}/disconnect" class="btn btn-danger">Desconectar</a>
       <check if="{{ @SESSION.user_rol==1 AND @tituloPagina == 'holyCalendar' }}">
         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalFechas">Añadir
