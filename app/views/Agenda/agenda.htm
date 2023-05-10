@@ -1,15 +1,7 @@
-<header>
-  <div id="tools" class="bg-primary d-flex flex-row-reverse align-items-center gap-3 px-3">
-    <a href="{{@BASE}}/disconnect" class="btn btn-danger">Desconectar</a>
-    <check if="{{ @SESSION.user_rol==1 }}">
-      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalFechas">Añadir
-        evento</a>
-    </check>
-  </div>
-</header>
 <div class="row">
 <div class="col-2" id="list-events">
   <h3>Próximos eventos</h3>
+  <hr>
 <template class="list">
   <p id="name-event" class="text-primary fw-bold">Nombre evento</p>
   <p>Fecha: <span id="date-event"></span></p>

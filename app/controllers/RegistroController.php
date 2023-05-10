@@ -22,7 +22,6 @@ class RegistroController extends Controller
         $usuario = new Usuario($this->db);
         $usuario->insertar($nombre, $correo, $password);
 
-        // Redirigir al usuario a una página de éxito
         $f3->set('SESSION.user_id', $usuario->id);
         $f3->set('SESSION.user_rol', $usuario->rol);
         $f3->reroute('/agenda');

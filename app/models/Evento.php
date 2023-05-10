@@ -49,7 +49,7 @@ class Evento extends \DB\SQL\Mapper
 
     public function getEventbyId($id)
     {
-        $this->load(['id = ?', $id]);
+        $this->load(array('id=?',$id));
         return $this->query;
     }
 

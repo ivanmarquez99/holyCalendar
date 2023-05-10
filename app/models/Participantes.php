@@ -35,6 +35,14 @@ class Participantes extends \DB\SQL\Mapper
         // Retorna true si el usuario existe, false en caso contrario
         return $count > 0;
     }
+
+    public function getEventsbyId($usuarioId)
+    {
+        // Realiza la consulta en la base de datos para verificar si el usuario ya existe
+        $this->load(array('usuario_id=?',$usuarioId));
+
+        return $this->query;
+    }
 }
 
 ?>
