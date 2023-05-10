@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     calendar.render();
 
 
-    for (let i = 3; i>=0 ; i--) {
+    for (let i = 0; i<=3 ; i++) {
         console.log(i)
         let nuevoEdif = templateList.content.cloneNode(true);
         nuevoEdif.querySelector("#name-event").innerText = arrEvents[i]['title'];
