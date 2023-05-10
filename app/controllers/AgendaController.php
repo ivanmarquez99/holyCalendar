@@ -166,15 +166,15 @@ class AgendaController extends Controller
   {
     $evento = json_decode($f3->get('BODY'), true);
 
-    $event = $evento['event'];
-    $user = $evento['user'];
+    $eventId = $evento['event'];
+    $userId = $evento['user'];
 
     // Crear una instancia del modelo de participantes
     $participante = new Participantes($this->db);
 
     // Obtener todos los participantes
-    $check = $participante->comprobarParticipante($user, $event);
+    $check = $participante->comprobarParticipante($userId, $eventId);
     
-    
+    echo json_encode($check);
   }
 }
