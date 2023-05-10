@@ -12,3 +12,17 @@ button#apuntarse {
   align-items: flex-start;
   margin-right: auto;
 }
+
+#list-events h3 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.col-10 {
+  padding-left: 0 !important;
+}
+
+#list-events {
+  border-right: 1px solid #ddd;
+  padding: 1.5em
+}

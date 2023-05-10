@@ -30,7 +30,7 @@ class Evento extends \DB\SQL\Mapper
     {
         // Realizar una consulta SELECT en la tabla 'events'
         // Ordenar los resultados por fecha de inicio
-        $this->load(array(), array('ORDER' => 'start ASC'));
+        $this->load(array(), array('ORDER' => 'start DESC'));
 
         // Devolver los resultados como un array
         return $this->query;

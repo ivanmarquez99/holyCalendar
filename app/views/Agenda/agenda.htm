@@ -7,7 +7,19 @@
     </check>
   </div>
 </header>
-<div id='calendar'></div>
+<div class="row">
+<div class="col-2" id="list-events">
+  <h3>Próximos eventos</h3>
+<template class="list">
+  <p id="name-event" class="text-primary fw-bold">Nombre evento</p>
+  <p>Fecha: <span id="date-event"></span></p>
+  <p>Hora de inicio: <span id="time-event"></span></p>
+  <p>Ubicación: <span id="ubication-event"></span></p>
+  <hr>
+</template>
+</div>
+<div id='calendar' class="col-10"></div>
+</div>
 <check if="{{ @SESSION.user_rol==1 }}">
   <div class="modal fade" tabindex="-1" id="modalFechas" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
