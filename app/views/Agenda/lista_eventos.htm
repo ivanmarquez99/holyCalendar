@@ -9,6 +9,7 @@
                 <th scope="col">Fecha de Inicio</th>
                 <th scope="col">Hora de Inicio</th>
                 <th scope="col">Organizador</th>
+                <th scope="col" class="text-center">Asistencia</th>
               </tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                         <td>{{ trim(@event.date) }}</td>
                         <td>{{ trim(@event.hour) }}</td>
                         <td>{{ trim(@event.color) }}</td>
+                        <td class="text-center"><form><button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button></form></td>
                       </tr>
                 </repeat>
             </tbody>
