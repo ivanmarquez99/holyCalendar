@@ -20,7 +20,13 @@
                         <td>{{ trim(@event.date) }}</td>
                         <td>{{ trim(@event.hour) }}</td>
                         <td>{{ trim(@event.color) }}</td>
-                        <td class="text-center"><form><button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button></form></td>
+                        <td class="text-center">
+                          <form action="asistencia">
+                            <input type="hidden" value="{{ trim(@event.id) }}" name="id_event">
+                            <input type="hidden" value="{{ @SESSION.user_id }}" name="id_user">
+                            <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
+                          </form>
+                        </td>
                       </tr>
                 </repeat>
             </tbody>

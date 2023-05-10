@@ -222,13 +222,21 @@ class AgendaController extends Controller
       }
     }
 
-    
-    
-
     $this->f3->set('listEvents', $eventos_formateados);
     $this->f3->set('tituloPagina', 'Lista de eventos en los que participas');
     echo \Template::instance()->render('../templates/layout/header-agenda.htm');
     echo \Template::instance()->render('Agenda/lista_eventos.htm');
     echo \Template::instance()->render('../templates/layout/footer.htm');
+  }
+
+  public function eliminarAsistencia($f3)
+  {
+    $usuarioId = $this->f3->get('POST.id-user');
+    $eventoId = $this->f3->get('POST.id-event');
+    $evento = new Evento($this->db);
+
+    if ($evento->deleteEvent($id)) {
+      // Redirigir a la página de eventos
+      $f3->reroute('/agenda');
   }
 }
