@@ -48,14 +48,63 @@
                     <div class="form-group mb-3">
                         <label for="color">Color:</label>
                         <select class="form-select" aria-label="Select color" id="color" name="color">
-                            <option selected>Elige quien organiza el evento</option>
-                            <option value="#D4AF37">Cofradía</option>
-                            <option value="#02cc24">Lagrimas y Favores</option>
-                            <option value="#4903fc">Azotes y Columna</option>
-                            <option value="#f70505">Exaltación</option>
-                            <option value="#000000">Ánimas de ciegos</option>
-                            <option value="#0062e3">Mayor Dolor</option>
-                            <option value="#014a14">Vera+Cruz y Sangre</option>
+                            <option>Elige quien organiza el evento</option>
+                            <check if="{{ @organiza=='#D4AF37' }}">
+                                <true>
+                                    <option value="#D4AF37" selected>Cofradía</option>
+                                </true>
+                                <else>
+                                    <option value="#D4AF37">Cofradía</option>
+                                </else>
+                            </check>
+                            <check if="{{ @organiza=='#02cc24' }}">
+                                <true>
+                                    <option value="#02cc24" selected>Lagrimas y Favores</option>
+                                </true>
+                                <else>
+                                    <option value="#02cc24">Lagrimas y Favores</option>
+                                </else>
+                            </check>
+                            <check if="{{ @organiza=='#4903fc' }}">
+                                <true>
+                                    <option value="#4903fc" selected>Azotes y Columna</option>
+                                </true>
+                                <else>
+                                    <option value="#4903fc">Azotes y Columna</option>
+                                </else>
+                            </check>
+                            <check if="{{ @organiza=='#f70505' }}">
+                                <true>
+                                    <option value="#f70505" selected>Exaltación</option>
+                                </true>
+                                <else>
+                                    <option value="#f70505">Exaltación</option>
+                                </else>
+                            </check>
+                            <check if="{{ @organiza=='#000000' }}">
+                                <true>
+                                    <option value="#000000" selected>Ánimas de ciegos</option>
+                                </true>
+                                <else>
+                                    <option value="#000000">Ánimas de ciegos</option>
+                                </else>
+                            </check>
+                            <check if="{{ @organiza=='#0062e3' }}">
+                                <true>
+                                    <option value="#0062e3" selected>Mayor Dolor</option>
+                                </true>
+                                <else>
+                                    <option value="#0062e3">Mayor Dolor</option>
+                                </else>
+                            </check>
+                            <check if="{{ @organiza=='#014a14' }}">
+                                <true>
+                                    <option value="#014a14">Vera+Cruz y Sangre</option>
+                                </true>
+                                <else>
+                                    <option value="#014a14">Vera+Cruz y Sangre</option>
+                                </else>
+                            </check>
                         </select>
                     </div>
                 </div>

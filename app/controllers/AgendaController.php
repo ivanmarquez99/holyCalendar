@@ -18,6 +18,8 @@ class AgendaController extends Controller
       $event = new Evento($this->db);
 
       $event->store($titulo, $descripcion, $fecha_inicio, $hora_inicio, $fecha_fin, $hora_fin, $color, $ubicacion);
+      
+      $this->f3->reroute('/agenda');
     }
 
     if ($f3->get('SESSION.user_id')) {
@@ -68,7 +70,7 @@ class AgendaController extends Controller
     $evento = new Evento($this->db);
 
     if ($evento->deleteEvent($id)) {
-      // Redirigir a la página de eventos
+      // Redirigir al calendario
       $f3->reroute('/agenda');
     }
   }
@@ -85,6 +87,7 @@ class AgendaController extends Controller
 
     // Renderizar la plantilla de edición de evento
     $f3->set('evento', $evento);
+    $f3->set('organiza', $evento['color']);
     $f3->set('tituloPagina', 'Editar evento seleccionado');
     echo \Template::instance()->render('../templates/layout/header.htm');
     echo \Template::instance()->render('Agenda/editar_evento.htm');
