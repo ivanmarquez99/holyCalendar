@@ -1,0 +1,35 @@
+<div class="vh-100 d-flex justify-content-center align-items-center" id="background">
+    <div class="w-75 bg-dark p-5 rounded-5 text-white">
+        <h1 class="text-center mb-5">Participaciones</h1>
+        <table class="table table-light">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha de Inicio</th>
+                <th scope="col">Hora de Inicio</th>
+                <th scope="col">Organizador</th>
+                <th scope="col" class="text-center">Asistencia</th>
+              </tr>
+            </thead>
+            <tbody>
+                <repeat group="{{ @listEvents }}" value="{{ @event }}">
+                    <tr>
+                        <td>{{ trim(@event.title) }}</td>
+                        <td>{{ trim(@event.description) }}</td>
+                        <td>{{ trim(@event.date) }}</td>
+                        <td>{{ trim(@event.hour) }}</td>
+                        <td>{{ trim(@event.color) }}</td>
+                        <td class="text-center">
+                          <form action="asistencias/eliminar" method="POST">
+                            <input type="hidden" value="{{ trim(@event.id) }}" name="id-event">
+                            <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
+                            <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
+                          </form>
+                        </td>
+                      </tr>
+                </repeat>
+            </tbody>
+          </table>
+    </div>
+</div>

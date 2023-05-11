@@ -30,7 +30,7 @@
       </form>
       <a href="{{@BASE}}/agenda" class="btn btn-success"><i class="bi bi-house"></i> Inicio</a>
       <check if="{{ @SESSION.user_rol==1 AND @tituloPagina == 'holyCalendar' }}">
-        <a href="{{@BASE}}/agenda" class="btn btn-secondary me-auto"><i class="bi bi-pencil-square"></i> Inscripciones</a>
+        <a href="{{@BASE}}/agenda/admin" class="btn btn-secondary me-auto"><i class="bi bi-pencil-square"></i> Inscripciones</a>
         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalFechas"><i
           class="bi bi-calendar-plus"></i> Nuevo evento</a>
       </check>
