@@ -23,3 +23,11 @@ table.fc-col-header a {
 a.fc-event.fc-event-start.fc-event-end.fc-daygrid-event.fc-daygrid-dot-event {
   cursor: pointer;
 }
+
+.next-event {
+  list-style: none;
+}
+
+.list-next-events {
+  padding-left: 0px;
+}

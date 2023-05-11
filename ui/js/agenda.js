@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-     var events = document.getElementById('prodId').value;
-     var participants = document.getElementById('signin').value;
-     var arrEvents = JSON.parse(events);
-     var templateList = document.querySelector("template.list");
-     var tabla = document.querySelector("#list-events");
-     console.log(arrEvents);
-     
+    var events = document.getElementById('prodId').value;
+    var ListNextEvent = document.querySelector('.list-next-events')
+    var arrEvents = JSON.parse(events);
+    console.log(arrEvents);
+
 
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -26,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dayGridMonth: 'Mes',
             dayGridWeek: 'Semana'
         },
-        eventClick: function(info) {
+        eventClick: function (info) {
 
             document.getElementById('eventTitle').innerHTML = info.event.title;
             document.getElementById('eventDate').innerHTML = moment(info.event.start).format('DD/MM/YYYY');
@@ -38,36 +36,37 @@ document.addEventListener('DOMContentLoaded', function () {
             var id_user = document.getElementById('id-user').value
 
             var data = {
-                event: parseInt(info.event.id), 
+                event: parseInt(info.event.id),
                 user: parseInt(id_user)
-              };
+            };
 
             fetch("agenda/comprobarasistencia", {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)})
-            .then(res => res.json())
-            .then(
-                res => {
-                    console.log(res);
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(
+                    res => {
+                        console.log(res);
 
-                    document.querySelector("#apuntarse").disabled=res;
+                        document.querySelector("#apuntarse").disabled = res;
 
-                    let myModal = new bootstrap.Modal('#eventModal', {
-                        keyboard: false
-                    });
-                    myModal.show();
-                }
-            )
-            .catch( err => console.error(err))
+                        let myModal = new bootstrap.Modal('#eventModal', {
+                            keyboard: false
+                        });
+                        myModal.show();
+                    }
+                )
+                .catch(err => console.error(err))
 
             document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
             document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
         },
         navLinks: true,
-        navLinkDayClick: function(date, jsEvent) {
+        navLinkDayClick: function (date, jsEvent) {
             calendar.changeView('timeGridDay', date);
         },
         eventTimeFormat: { // like '14:30'
@@ -77,6 +76,40 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     calendar.render();
-    
+
+    var elementos = ListNextEvent.getElementsByTagName('li');
+
+    var arregloElementos = Array.from(elementos);
+
+    arregloElementos.forEach(element => {
+
+        element.addEventListener('click', function () {
+            var elementId = this.getAttribute('data-event');
+
+            var encontrado = arrEvents.find(function (objeto) {
+                return objeto.id == elementId;
+            });
+
+            console.log('Encontrado:', encontrado);
+
+            document.getElementById('eventTitle').innerHTML = encontrado.title;
+            document.getElementById('eventDate').innerHTML = moment(encontrado.start).format('DD/MM/YYYY');
+            document.getElementById('eventStart').innerHTML = moment(encontrado.start).format('HH:mm');
+            document.getElementById('eventEnd').innerHTML = moment(encontrado.end).format('HH:mm');
+            document.getElementById('eventDescription').innerHTML = encontrado.description;
+            document.getElementById('eventUbication').innerHTML = encontrado.ubicacion;
+            document.getElementById('id-event').value = encontrado.id;
+
+            document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + encontrado.id);
+            document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + encontrado.id);
+
+            let myModal = new bootstrap.Modal('#eventModal', {
+                keyboard: false
+            });
+            myModal.show();
+        })
+
+    });
+
 });
 
