@@ -22,8 +22,8 @@
                         <td>{{ trim(@event.color) }}</td>
                         <td class="text-center">
                           <form action="asistencias/eliminar" method="POST">
-                            <input type="hidden" value="{{ trim(@event.id) }}" name="id_event">
-                            <input type="hidden" value="{{ @SESSION.user_id }}" name="id_user">
+                            <input type="hidden" value="{{ trim(@event.id) }}" name="id-event">
+                            <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
                             <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
                           </form>
                         </td>

@@ -29,8 +29,6 @@ class AsistenciaController extends Controller
         //Comprobar los eventos en los que participo
         $listEvents = $participante->getEventsbyId($usuarioId);
 
-
-        $arrEvents = array();
         $eventos_formateados = array();
 
         foreach ($listEvents as $valor) {
@@ -71,14 +69,14 @@ class AsistenciaController extends Controller
 
     public function eliminarAsistencia($f3)
     {
-        $usuarioId = $this->f3->get('POST.id-user');
-        $eventoId = $this->f3->get('POST.id-event');
+        $usuarioId = $f3->get('POST.id-user');
+        $eventoId = $f3->get('POST.id-event');
         $inscripcion = new Participantes($this->db);
 
         if ($inscripcion->eliminarInscripcion($usuarioId, $eventoId)) {
             // Redirigir a la página de eventos
             echo "Está funcionando";
-            $f3->reroute('/agenda/asistencias');
+            $f3->reroute('/agenda');
         } else {
             echo "No está funcionando";
         }

@@ -29,13 +29,13 @@ class Participantes extends \DB\SQL\Mapper
 
     public function eliminarInscripcion($usuarioId, $eventId)
     {
-        $this->load(['usuario_id = ? AND evento_id = ?', $usuarioId, $eventId]);
-        if ($this->dry()) {
-            return false; // El evento no existe
-        }
-        $this->erase();
+    $this->load(['usuario_id = ? AND evento_id = ?', $usuarioId, $eventId]);
+    if ($this->dry()) {
+        return false; // El evento no existe
+    }
+    $this->erase();
 
-        return true;
+    return true;
     }
 
     public function comprobarParticipante($usuarioId, $eventId)
@@ -55,5 +55,3 @@ class Participantes extends \DB\SQL\Mapper
         return $this->query;
     }
 }
-
-?>
