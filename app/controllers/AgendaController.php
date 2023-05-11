@@ -24,6 +24,7 @@ class AgendaController extends Controller
 
       $this->inscritos();
       $this->getEvents();
+      $this->nextEvents();
 
       $f3->set('tituloPagina', 'holyCalendar');
       echo \Template::instance()->render('../templates/layout/header-agenda.htm');
@@ -121,7 +122,7 @@ class AgendaController extends Controller
     // Redirigir a la página de eventos
     $f3->reroute('/agenda');
   }
-  
+
   public function inscritos()
   {
     // Crear una instancia del modelo de participantes
@@ -144,6 +145,43 @@ class AgendaController extends Controller
 
     // Pasar los participantes a la vista
     $this->f3->set('participants_json', $participantsJson);
-    return $participantsJson;
+  }
+
+  public function nextEvents()
+  {
+    // Obtener el evento a editar desde el modelo
+    $evento = new Evento($this->db);
+
+    $listEvents = $evento->getNextEvents();
+
+    $eventos_formateados = array();
+
+    foreach ($listEvents as $valor) {
+        $organiza = array(
+          '#D4AF37' => 'Cofradia',
+          '#02cc24' => 'Lagrimas y Favores',
+          '#4903fc' => 'Azotes y Columna',
+          '#f70505' => 'Exaltación',
+          '#000000' => 'Ánimas de ciegos',
+          '#0062e3' => 'Mayor Dolor',
+          '#014a14' => 'Vera+Cruz'
+        );
+
+        $color = $valor['color'];
+
+        $evento_formateado = array(
+          'id' => $valor['id'],
+          'title' => $valor['titulo'],
+          'date' => date('d-m-Y', strtotime($valor['fecha_inicio'])),
+          'hour' => date('H:i', strtotime($valor['hora_inicio'])),
+          'color' => $organiza[$color],
+          'ubicacion' => $valor['ubicacion'],
+          'description' => $valor['descripcion']
+        );
+        array_push($eventos_formateados, $evento_formateado);
+
+    }
+
+    $this->f3->set('proximos_eventos', $eventos_formateados);
   }
 }

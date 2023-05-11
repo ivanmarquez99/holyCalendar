@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
      var events = document.getElementById('prodId').value;
      var participants = document.getElementById('signin').value;
-     var arrParticipants = JSON.parse(participants);
      var arrEvents = JSON.parse(events);
      var templateList = document.querySelector("template.list");
      var tabla = document.querySelector("#list-events");
@@ -78,18 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     calendar.render();
-
-
-    for (let i = 0; i<=3 ; i++) {
-        console.log(i)
-        let nuevoEdif = templateList.content.cloneNode(true);
-        nuevoEdif.querySelector("#name-event").innerText = arrEvents[i]['title'];
-        nuevoEdif.querySelector("#date-event").innerText = arrEvents[i]['start'].replace(/T.*$/, '');
-        nuevoEdif.querySelector("#time-event").innerText = arrEvents[i]['start'].replace(/.*T(\d{2}:\d{2}).*/, '$1');
-        nuevoEdif.querySelector("#ubication-event").innerText = arrEvents[i]['ubicacion'];
-
-        tabla.appendChild(nuevoEdif);
-    }
     
 });
 

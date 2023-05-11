@@ -2,13 +2,14 @@
 <div class="col-2" id="list-events">
   <h3>Próximos eventos</h3>
   <hr>
-<template class="list">
-  <p id="name-event" class="text-primary fw-bold">Nombre evento</p>
-  <p>Fecha: <span id="date-event"></span></p>
-  <p>Hora de inicio: <span id="time-event"></span></p>
-  <p>Ubicación: <span id="ubication-event"></span></p>
-  <hr>
-</template>
+  <repeat group="{{ @proximos_eventos }}" value="{{ @event }}">
+        <p class="fw-bolder text-primary mb-1">{{ trim(@event.title) }}</p>
+        <p class="mb-1"><i class="bi bi-archive"></i> {{ trim(@event.description) }}</p>
+        <p class="mb-1"><i class="bi bi-calendar-event"></i> {{ trim(@event.date) }}</p>
+        <p class="mb-1"><i class="bi bi-clock"></i> {{ trim(@event.hour) }}</p>
+        <p class="mb-1"><i class="bi bi-person"></i> {{ trim(@event.color) }}</p>
+      <hr>
+</repeat>
 </div>
 <div id='calendar' class="col-10"></div>
 </div>

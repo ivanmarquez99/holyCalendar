@@ -30,7 +30,7 @@ class Evento extends \DB\SQL\Mapper
     {
         // Realizar una consulta SELECT en la tabla 'events'
         // Ordenar los resultados por fecha de inicio
-        $this->load(array(), array('ORDER' => 'start DESC'));
+        $this->load(array(), array('ORDER' => 'start ASC'));
 
         // Devolver los resultados como un array
         return $this->query;
@@ -50,6 +50,16 @@ class Evento extends \DB\SQL\Mapper
     public function getEventbyId($id)
     {
         $this->load(array('id=?',$id));
+        return $this->query;
+    }
+
+    public function getNextEvents()
+    {
+        $fechaActual = date('Y-m-d');
+        $cantidad = 4;
+        
+        $this->load("fecha_inicio >= '$fechaActual'", ['order' => 'fecha_inicio ASC', 'limit' => $cantidad]);
+
         return $this->query;
     }
 
