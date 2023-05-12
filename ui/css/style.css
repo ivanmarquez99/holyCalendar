@@ -26,3 +26,12 @@ button#apuntarse {
   border-right: 1px solid #ddd;
   padding: 1.5em
 }
+
+#list-events li {
+  transition: all 0.5s;
+}
+
+#list-events li:hover {
+  background-color: #dddddd50;
+  cursor: pointer;
+}

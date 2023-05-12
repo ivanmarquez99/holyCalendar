@@ -1,40 +1,71 @@
 <div class="vh-100 d-flex justify-content-center align-items-center" id="background">
-    <div class="w-75 bg-dark p-5 rounded-5 text-white">
-        <div>
-            <form action="" method="POST">
-                <select name="" id=""></select>
-            </form>
-            <h1 class="text-center mb-5">Participaciones</h1>
+  <div class="w-75 bg-dark p-5 rounded-5 text-white">
+    <div class="text-light row">
+      <div class="col">
+        <form action="" method="POST">
+          <div class="form-group mb-2">
+            <label for="select-project" class="form-label">Elige un proyecto</label>
+            <select name="select-project" id="select-project" class="form-select" aria-label="Seleccionar proyecto"
+              onchange="this.form.submit()">
+              <option>Abra para ver las opciones</option>
+              <repeat group="{{ @anteriores_eventos }}" value="{{ @event }}">
+                <option value="{{trim(@event.id)}}">{{ trim(@event.title) }}</option>
+              </repeat>
+            </select>
+          </div>
+        </form>
+        <div class="form-group mb-2">
+          <label for="name-project" class="form-label">Nombre</label>
+          <input type="text" class="form-control" id="name-project" name="name-project" value="{{@informacion.title}}" disabled>
         </div>
-        <table class="table table-light">
-            <thead>
-              <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Fecha de Inicio</th>
-                <th scope="col">Hora de Inicio</th>
-                <th scope="col">Organizador</th>
-                <th scope="col" class="text-center">Asistencia</th>
-              </tr>
-            </thead>
-            <tbody>
-                <repeat group="{{ @listEvents }}" value="{{ @event }}">
-                    <tr>
-                        <td>{{ trim(@event.title) }}</td>
-                        <td>{{ trim(@event.description) }}</td>
-                        <td>{{ trim(@event.date) }}</td>
-                        <td>{{ trim(@event.hour) }}</td>
-                        <td>{{ trim(@event.color) }}</td>
-                        <td class="text-center">
-                          <form action="asistencias/eliminar" method="POST">
-                            <input type="hidden" value="{{ trim(@event.id) }}" name="id-event">
-                            <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
-                            <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
-                          </form>
-                        </td>
-                      </tr>
-                </repeat>
-            </tbody>
-          </table>
+        <div class="form-group mb-2">
+          <label for="description-project" class="form-label">Descripcion</label>
+          <textarea class="form-control" id="description-project" name="description-project" style="height: 100px"
+            disabled>{{@informacion.description}}</textarea>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group mb-2">
+          <label for="date-project" class="form-label">Fecha de inicio</label>
+          <input type="date" class="form-control" id="date-project" name="date-project" value="{{@informacion.date}}" disabled>
+        </div>
+        <div class="form-group mb-2">
+          <label for="hour-project" class="form-label">Hora de inicio:</label>
+          <input type="time" class="form-control" id="hour-project" name="hour-project" value="{{@informacion.hour}}" disabled>
+        </div>
+        <div class="form-group mb-2">
+          <label for="organization-project" class="form-label">Organizador:</label>
+          <input type="text" class="form-control" id="organization-project" name="organization-project" value="{{@informacion.organizer}}" disabled>
+        </div>
+      </div>
     </div>
+    <h1 class="text-center mb-5">Participaciones</h1>
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Rol</th>
+          <th scope="col">¿Asistió?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <repeat group="{{ @listEvents }}" value="{{ @event }}">
+          <tr>
+            <td>{{ trim(@event.title) }}</td>
+            <td>{{ trim(@event.description) }}</td>
+            <td>{{ trim(@event.date) }}</td>
+            <td>{{ trim(@event.hour) }}</td>
+            <td class="text-center">
+              <form action="asistencias/eliminar" method="POST">
+                <input type="hidden" value="{{ trim(@event.id) }}" name="id-event">
+                <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
+                <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+        </repeat>
+      </tbody>
+    </table>
+  </div>
 </div>
