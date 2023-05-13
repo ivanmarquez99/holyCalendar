@@ -97,9 +97,5 @@ class AsistenciaController extends Controller
     $f3->reroute('/agenda');
   }
 
-    public function participantesById($id) {
-
-    }
-
   
 }

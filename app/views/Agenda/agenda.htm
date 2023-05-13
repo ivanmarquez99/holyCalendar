@@ -1,15 +1,17 @@
 <div class="row">
   <div class="col-2" id="list-events">
-    <h3>Próximos eventos</h3>
+    <h3 class="p-4">Próximos eventos</h3>
     <hr>
     <ul class="list-next-events">
       <repeat group="{{ @proximos_eventos }}" value="{{ @event }}">
-        <li class="next-event" data-event="{{ trim(@event.id) }}">
+        <li class="next-event p-3" data-event="{{ trim(@event.id) }}">
           <p class="fw-bolder text-primary mb-1">{{ trim(@event.title) }}</p>
-          <p class="mb-1 ms-3"><i class="bi bi-archive"></i> {{ trim(@event.description) }}</p>
-          <p class="mb-1 ms-3"><i class="bi bi-calendar-event"></i> {{ trim(@event.date) }}</p>
-          <p class="mb-1 ms-3"><i class="bi bi-clock"></i> {{ trim(@event.hour) }}</p>
-          <p class="mb-1 ms-3"><i class="bi bi-person"></i> {{ trim(@event.color) }}</p>
+          <div class="ms-3">
+          <p class="mb-1"><i class="bi bi-archive"></i> {{ trim(@event.description) }}</p>
+          <p class="mb-1"><i class="bi bi-calendar-event"></i> {{ trim(@event.date) }}</p>
+          <p class="mb-1"><i class="bi bi-clock"></i> {{ trim(@event.hour) }}</p>
+          <p class="mb-1"><i class="bi bi-person"></i> {{ trim(@event.color) }}</p>
+        </div>
         </li>
         <hr>
       </repeat>

@@ -6,10 +6,13 @@ class AdminController extends Controller
     {
         if (\Base::instance()->exists('POST.select-project')) {
             $information = $this->eventsInformation($f3);
+            $participantes = $this->participantesById($information['id']);
+
+            $f3->set('participantes', $participantes);
             $f3->set('informacion', $information);
         }
         $this->listEvents();
-       
+
         if ($f3->get('SESSION.user_id')) {
             $f3->set('tituloPagina', 'Panel de administración');
             echo \Template::instance()->render('../templates/layout/header-agenda.htm');
@@ -72,7 +75,38 @@ class AdminController extends Controller
                 'description' => $valor['descripcion']
             );
         }
-        
+
         return $evento_limpio;
+    }
+
+    public function participantesById($eventId)
+    {
+
+        $participante = new Participantes($this->db);
+
+        $participantes = $participante->getParticipantesbyId($eventId);
+
+        return $participantes;
+    }
+
+    public function asistenciaCheck($f3)
+    {
+
+        $participacion = $f3->get('POST.participa');
+        $userId = $f3->get('POST.userId');
+        $eventId = $f3->get('POST.eventId');
+
+        $participante = new Participantes($this->db);
+        if ($participacion=="true") {
+            $participante->changeParticipacion($userId, 1, $eventId);
+        } else {
+            $participante->changeParticipacion($userId, 0, $eventId);
+        }
+
+        if($participante) {
+            $f3->reroute('/agenda/admin', null, ['select-project' => $eventId], 'POST');
+        } else {
+            echo "Algo falló";
+        }
     }
 }

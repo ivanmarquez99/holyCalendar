@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Participantes extends \DB\SQL\Mapper
 {
@@ -8,7 +8,7 @@ class Participantes extends \DB\SQL\Mapper
         parent::__construct($db, 'users_events');
     }
 
-    public function getParticipantes() 
+    public function getParticipantes()
     {
         $this->load();
 
@@ -29,13 +29,13 @@ class Participantes extends \DB\SQL\Mapper
 
     public function eliminarInscripcion($usuarioId, $eventId)
     {
-    $this->load(['usuario_id = ? AND evento_id = ?', $usuarioId, $eventId]);
-    if ($this->dry()) {
-        return false; // El evento no existe
-    }
-    $this->erase();
+        $this->load(['usuario_id = ? AND evento_id = ?', $usuarioId, $eventId]);
+        if ($this->dry()) {
+            return false; // El evento no existe
+        }
+        $this->erase();
 
-    return true;
+        return true;
     }
 
     public function comprobarParticipante($usuarioId, $eventId)
@@ -50,8 +50,40 @@ class Participantes extends \DB\SQL\Mapper
     public function getEventsbyId($usuarioId)
     {
         // Realiza la consulta en la base de datos para verificar si el usuario ya existe
-        $this->load(array('usuario_id=?',$usuarioId));
+        $this->load(array('usuario_id=?', $usuarioId));
 
         return $this->query;
+    }
+
+    public function getParticipantesbyId($eventId)
+    {
+        // Consulta para obtener los usuarios que participarán en el evento
+        $query = "SELECT users.*, users_events.asistencia
+                FROM users_events
+                INNER JOIN users ON users.id = users_events.usuario_id
+                WHERE users_events.evento_id = :eventId";
+        
+        // Ejecutar la consulta
+        $usuariosParticipantes = $this->db->exec($query, array(':eventId' => $eventId));
+
+        return $usuariosParticipantes;
+    }
+
+    public function changeParticipacion($userId, $participa, $eventId)
+    {
+        $this->load(array('usuario_id = ? AND evento_id = ?', $userId, $eventId));
+        
+        // Verificar si el registro existe
+        if ($this->dry()) {
+            return false; // El registro no existe
+        }
+
+        // Actualizar el valor de "asistencia" en el registro
+        $this->asistencia = $participa;
+
+        // Guardar los cambios en la base de datos
+        $this->update();
+
+        return true; // Actualización exitosa
     }
 }

@@ -1,8 +1,9 @@
 <div class="vh-100 d-flex justify-content-center align-items-center" id="background">
   <div class="w-75 bg-dark p-5 rounded-5 text-white">
+    <h1 class="text-center mb-3">Participaciones</h1>
     <div class="text-light row">
       <div class="col">
-        <form action="" method="POST">
+        <form action="" method="POST" class="mb-0">
           <div class="form-group mb-2">
             <label for="select-project" class="form-label">Elige un proyecto</label>
             <select name="select-project" id="select-project" class="form-select" aria-label="Seleccionar proyecto"
@@ -16,31 +17,36 @@
         </form>
         <div class="form-group mb-2">
           <label for="name-project" class="form-label">Nombre</label>
-          <input type="text" class="form-control" id="name-project" name="name-project" value="{{@informacion.title}}" disabled>
-        </div>
+          <input type="text" class="form-control" id="name-project" name="name-project" value="{{@informacion.title}}"
+            disabled>
+        </div>        
+      </div>
+      <div class="col">
         <div class="form-group mb-2">
           <label for="description-project" class="form-label">Descripcion</label>
-          <textarea class="form-control" id="description-project" name="description-project" style="height: 100px"
+          <textarea class="form-control" id="description-project" name="description-project" style="height: 36px"
             disabled>{{@informacion.description}}</textarea>
+        </div>
+        <div class="form-group mb-2">
+          <label for="organization-project" class="form-label">Organizador:</label>
+          <input type="text" class="form-control" id="organization-project" name="organization-project"
+            value="{{@informacion.organizer}}" disabled>
         </div>
       </div>
       <div class="col">
         <div class="form-group mb-2">
           <label for="date-project" class="form-label">Fecha de inicio</label>
-          <input type="date" class="form-control" id="date-project" name="date-project" value="{{@informacion.date}}" disabled>
+          <input type="date" class="form-control" id="date-project" name="date-project" value="{{@informacion.date}}"
+            disabled>
         </div>
         <div class="form-group mb-2">
           <label for="hour-project" class="form-label">Hora de inicio:</label>
-          <input type="time" class="form-control" id="hour-project" name="hour-project" value="{{@informacion.hour}}" disabled>
-        </div>
-        <div class="form-group mb-2">
-          <label for="organization-project" class="form-label">Organizador:</label>
-          <input type="text" class="form-control" id="organization-project" name="organization-project" value="{{@informacion.organizer}}" disabled>
-        </div>
+          <input type="time" class="form-control" id="hour-project" name="hour-project" value="{{@informacion.hour}}"
+            disabled>
+          </div>
       </div>
     </div>
-    <h1 class="text-center mb-5">Participaciones</h1>
-    <table class="table table-light">
+    <table class="table table-light mt-3">
       <thead>
         <tr>
           <th scope="col">Nombre</th>
@@ -50,18 +56,33 @@
         </tr>
       </thead>
       <tbody>
-        <repeat group="{{ @listEvents }}" value="{{ @event }}">
+        <repeat group="{{ @participantes }}" value="{{ @participante }}">
           <tr>
-            <td>{{ trim(@event.title) }}</td>
-            <td>{{ trim(@event.description) }}</td>
-            <td>{{ trim(@event.date) }}</td>
-            <td>{{ trim(@event.hour) }}</td>
-            <td class="text-center">
-              <form action="asistencias/eliminar" method="POST">
-                <input type="hidden" value="{{ trim(@event.id) }}" name="id-event">
-                <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
-                <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
-              </form>
+            <td>{{ trim(@participante.nombre_usuario) }}</td>
+            <td>{{ trim(@participante.email) }}</td>
+            <td>{{ trim(@participante.rol) }}</td>
+            <td>
+              <check if="{{ trim(@participante.asistencia)=='0' }}">
+                <true>
+                  <form method="POST" action="{{@BASE}}/agenda/admin/asistio">
+                  <input type="hidden" value="true" name="participa">
+                  <input type="hidden" value="{{@SESSION.user_id}}" name="userId">
+                  <input type="hidden" value="{{@informacion.id}}" name="eventId">
+                  <button class="btn btn-success" type="submit"><i class="bi bi-check2"></i></button>
+                  <button class="btn btn-danger" disabled><i class="bi bi-x-lg" ></i></button>
+                  </form>
+                </true>
+                <false>
+                  <form method="POST" action="{{@BASE}}/agenda/admin/asistio">
+                    <input type="hidden" value="false" name="participa">
+                    <input type="hidden" value="{{@SESSION.user_id}}" name="userId">
+                    <input type="hidden" value="{{@informacion.id}}" name="eventId">
+                    <button class="btn btn-success" disabled><i class="bi bi-check2"></i></button>
+                    <button class="btn btn-danger" type="submit"><i class="bi bi-x-lg" ></i></button>
+                    </form>
+                </false>
+              </check>
+              
             </td>
           </tr>
         </repeat>

@@ -22,11 +22,6 @@ button#apuntarse {
   padding-left: 0 !important;
 }
 
-#list-events {
-  border-right: 1px solid #ddd;
-  padding: 1.5em
-}
-
 #list-events li {
   transition: all 0.5s;
 }
@@ -42,4 +37,12 @@ button#apuntarse {
 
 .mostrar {
   display: block;
+}
+
+div#list-events {
+  padding-right: 0;
+}
+
+div#calendar {
+  border-left: 1px solid #ddd;
 }
