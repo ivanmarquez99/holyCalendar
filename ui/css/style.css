@@ -35,3 +35,11 @@ button#apuntarse {
   background-color: #dddddd50;
   cursor: pointer;
 }
+
+.ocultar {
+  display: none;
+}
+
+.mostrar {
+  display: block;
+}
