@@ -45,3 +45,39 @@ line-height: 1.4;
 overflow: hidden;
 text-overflow: ellipsis;
 }
+
+div#list-events {
+  padding-right: 0;
+  height: 80vh;
+}
+
+ul.list-next-events {
+  height: 100%;
+  overflow: auto;
+}
+
+ul.list-next-events::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+ul.list-next-events::-webkit-scrollbar:vertical {
+  width:10px;
+}
+
+ul.list-next-events::-webkit-scrollbar-button:increment,ul.list-next-events::-webkit-scrollbar-button {
+  display: none;
+} 
+
+ul.list-next-events::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+ul.list-next-events::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+ul.list-next-events::-webkit-scrollbar-track {
+  border-radius: 10px;  
+}
