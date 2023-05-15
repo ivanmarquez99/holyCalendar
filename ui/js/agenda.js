@@ -123,6 +123,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function copyValue(valor) {
-
     document.querySelector("#fecha_fin").value = valor;
 };
