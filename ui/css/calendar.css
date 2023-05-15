@@ -31,3 +31,17 @@ a.fc-event.fc-event-start.fc-event-end.fc-daygrid-event.fc-daygrid-dot-event {
 .list-next-events {
   padding-left: 0px;
 }
+
+.truncate {
+display: block; /* Fallback for non-webkit */
+display: -webkit-box;
+max-width: 400px;
+height: 1.4*5*16; /* Fallback for non-webkit (line-height*number-lines*size )*/
+margin: 0 auto;
+font-size: 16px;
+line-height: 1.4;
+-webkit-line-clamp: 5;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+}

@@ -16,7 +16,7 @@
                 <repeat group="{{ @listEvents }}" value="{{ @event }}">
                     <tr>
                         <td>{{ trim(@event.title) }}</td>
-                        <td>{{ trim(@event.description) }}</td>
+                        <td><button class="btn btn-primary" id="descriptionModal{{ trim(@event.id) }}" data-description="{{ trim(@event.description) }}" onclick="descriptionModal(this.id)">Ver descripción</button></td>
                         <td>{{ trim(@event.date) }}</td>
                         <td>{{ trim(@event.hour) }}</td>
                         <td>{{ trim(@event.color) }}</td>
@@ -32,4 +32,18 @@
             </tbody>
           </table>
     </div>
+</div>
+
+<div class="modal fade" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="modalDescription" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventTitle"><i class="bi bi-archive"></i> Descripción</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Descripción:</strong> <span id="eventDescription"></span></p>
+      </div>
+    </div>
+  </div>
 </div>
