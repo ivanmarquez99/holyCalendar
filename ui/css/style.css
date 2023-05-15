@@ -46,3 +46,11 @@ div#list-events {
 div#calendar {
   border-left: 1px solid #ddd;
 }
+
+select.form-select.form-select-sm {
+  color: white;
+}
+
+input.form-control.form-control-sm {
+  color: white;
+}
