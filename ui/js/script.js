@@ -26,6 +26,15 @@ window.addEventListener("load", function() {
     });
 })
 
+window.addEventListener("load", function() {
+
+    let table = new DataTable('#myTable', {
+        responsive: true,
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+        },
+    });
+})
 
 function verificarPasswords() {
  
@@ -73,3 +82,5 @@ function descriptionModal(id) {
     });
     myModal.show();
 }
+
+

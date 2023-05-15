@@ -18,8 +18,13 @@
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js'></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
     integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
-  <script src="https://cdn.tiny.cloud/1/ppr05yo1e4ljmfovreeg9si9acteo9as2rriaj6iqfbnsrii/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://cdn.tiny.cloud/1/ppr05yo1e4ljmfovreeg9si9acteo9as2rriaj6iqfbnsrii/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
   <script src='{{@BASE}}/ui/langs/es.js'></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+  
 
 </head>
 
@@ -33,9 +38,10 @@
       </form>
       <a href="{{@BASE}}/agenda" class="btn btn-success"><i class="bi bi-house"></i> Inicio</a>
       <check if="{{ @SESSION.user_rol==1 AND @tituloPagina == 'holyCalendar' }}">
-        <a href="{{@BASE}}/agenda/admin" class="btn btn-secondary me-auto"><i class="bi bi-pencil-square"></i> Inscripciones</a>
+        <a href="{{@BASE}}/agenda/admin" class="btn btn-secondary me-auto"><i class="bi bi-pencil-square"></i>
+          Inscripciones</a>
         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalFechas"><i
-          class="bi bi-calendar-plus"></i> Nuevo evento</a>
+            class="bi bi-calendar-plus"></i> Nuevo evento</a>
       </check>
     </div>
   </header>
