@@ -15,8 +15,8 @@ class AdminController extends Controller
 
         if ($f3->get('SESSION.user_id')) {
             $f3->set('tituloPagina', 'Panel de administración');
-            echo \Template::instance()->render('../templates/layout/header-agenda.htm');
-            echo \Template::instance()->render('Admin/admin.htm');
+            echo \Template::instance()->render('../templates/layout/header-lista.htm');
+            echo \Template::instance()->render('Admin/new-admin.htm');
             echo \Template::instance()->render('../templates/layout/footer.htm');
         } else {
             $f3->reroute('/');
@@ -31,11 +31,28 @@ class AdminController extends Controller
 
         $eventos_formateados = array();
         foreach ($listEvents as $valor) {
-            $evento_formateado = array(
+            $organiza = array(
+                '#D4AF37' => 'Cofradia',
+                '#02cc24' => 'Lagrimas y Favores',
+                '#4903fc' => 'Azotes y Columna',
+                '#f70505' => 'Exaltación',
+                '#000000' => 'Ánimas de ciegos',
+                '#0062e3' => 'Mayor Dolor',
+                '#014a14' => 'Vera+Cruz'
+            );
+
+            $color = $valor['color'];
+
+            $evento_limpio = array(
                 'id' => $valor['id'],
                 'title' => $valor['titulo'],
+                'date' => date('Y-m-d', strtotime($valor['fecha_inicio'])),
+                'hour' => date('H:i', strtotime($valor['hora_inicio'])),
+                'organizer' => $organiza[$color],
+                'ubication' => $valor['ubicacion'],
+                'description' => $valor['descripcion']
             );
-            array_push($eventos_formateados, $evento_formateado);
+            array_push($eventos_formateados, $evento_limpio);
         }
 
         $this->f3->set('anteriores_eventos', $eventos_formateados);
@@ -49,8 +66,6 @@ class AdminController extends Controller
         $evento = new Evento($this->db);
 
         $EventList = $evento->getEventbyId($id);
-
-        $eventos = array();
 
         foreach ($EventList as $valor) {
             $organiza = array(

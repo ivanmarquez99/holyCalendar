@@ -3,7 +3,7 @@ body {
 }
 
 #tools {
-  height: 5vh;
+  padding: 0.5vw 0;
 }
 
 .fc .fc-toolbar.fc-header-toolbar {

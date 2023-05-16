@@ -1,0 +1,57 @@
+<div id="background" class="vh-100">
+    <div class="d-flex flex-column w-75 m-auto p-5">
+        <div class="bg-dark text-light rounded-5 p-5 row">
+            <h5>Filtrar por fechas</h5>
+                <div class="form-group mb-2 col">
+                    <label for="min" class="form-label">Fecha de inicio</label>
+                    <input type="date" class="datetimepicker form-control" id="min" name="min">
+                  </div>
+                  <div class="form-group mb-2 col">
+                    <label for="max" class="form-label">Fecha de inicio</label>
+                    <input type="date" class="form-control" id="max" name="max" datepicker="false">
+                  </div>
+        </div>
+        <div class="bg-dark mt-3 p-5 text-light rounded-5">
+            <table class="table table-striped table-hover table-light" id="myTable" aria-describedby="myTable_info">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Organizador</th>
+                        <th scope="col">Fecha de inicio</th>
+                        <th scope="col">Hora de inicio</th>
+                        <th scope="col">Ubicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <repeat group="{{ @anteriores_eventos }}" value="{{ @evento }}">
+                    <tr>
+                        <th>{{trim(@evento.id)}}</th>
+                        <th>{{trim(@evento.title)}}</th>
+                        <td ><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}" data-description="{{ trim(@evento.description) }}" onclick="descriptionModal(this.id)">Ver descripción</button></td>
+                        <td>{{trim(@evento.organizer)}}</td>
+                        <td>{{trim(@evento.date)}}</td>
+                        <td>{{trim(@evento.hour)}}</td>
+                        <td>{{trim(@evento.ubication)}}</td>
+                    </tr>
+                    </repeat>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="modalDescription" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eventTitle"><i class="bi bi-archive"></i> Descripción</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Descripción:</strong> <span id="eventDescription"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>

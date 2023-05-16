@@ -26,15 +26,47 @@ window.addEventListener("load", function() {
     });
 })
 
-window.addEventListener("load", function() {
+var minDate, maxDate;
 
-    let table = new DataTable('#myTable', {
-        responsive: true,
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
-        },
+$.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date( data[4] );
+ 
+        if (
+            ( min === null && max === null ) ||
+            ( min === null && date <= max ) ||
+            ( min <= date   && max === null ) ||
+            ( min <= date   && date <= max )
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
+
+$(document).ready(function() {
+
+    // Create date inputs
+    minDate = new DateTime($('#min'), {
+        format: 'YYYY-MM-DD'
     });
-})
+    maxDate = new DateTime($('#max'), {
+        format: 'YYYY-MM-DD',
+    });
+ 
+    // DataTables initialisation
+    var table = $('#myTable').DataTable({
+        language: {
+          url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+        }});
+ 
+    // Refilter the table
+    $('#min, #max').on('change', function () {
+        table.draw();
+    });
+});
 
 function verificarPasswords() {
  

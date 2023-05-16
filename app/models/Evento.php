@@ -66,9 +66,8 @@ class Evento extends \DB\SQL\Mapper
     public function getPreviousEvents()
     {
         $fechaActual = date('Y-m-d');
-        $cantidad = 5;
         
-        $this->load("fecha_inicio <= '$fechaActual'", ['order' => 'fecha_inicio DESC', 'limit' => $cantidad]);
+        $this->load("fecha_inicio <= '$fechaActual'", ['order' => 'fecha_inicio DESC']);
 
         return $this->query;
     }

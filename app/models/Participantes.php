@@ -19,10 +19,10 @@ class Participantes extends \DB\SQL\Mapper
     public function inscribirseEvento($usuarioId, $eventId)
     {
         $this->db->exec(
-            'INSERT INTO users_events (usuario_id, evento_id) 
-        VALUES(:usuario_id, :evento_id)',
+            'INSERT INTO users_events (usuario_id, evento_id, asistencia) 
+        VALUES(:usuario_id, :evento_id, :asistencia)',
             array(
-                ':usuario_id' => $usuarioId, ':evento_id' => $eventId
+                ':usuario_id' => $usuarioId, ':evento_id' => $eventId, ':asistencia' => 0
             )
         );
     }

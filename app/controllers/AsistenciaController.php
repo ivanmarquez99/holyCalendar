@@ -62,7 +62,7 @@ class AsistenciaController extends Controller
 
         $this->f3->set('listEvents', $eventos_formateados);
         $this->f3->set('tituloPagina', 'Lista de eventos en los que participas');
-        echo \Template::instance()->render('../templates/layout/header-agenda.htm');
+        echo \Template::instance()->render('../templates/layout/header-lista.htm');
         echo \Template::instance()->render('Agenda/lista_eventos.htm');
         echo \Template::instance()->render('../templates/layout/footer.htm');
     }

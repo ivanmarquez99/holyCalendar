@@ -46,64 +46,50 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group mb-3">
-                        <label for="color">Color:</label>
+                        <label for="color">Organiza:</label>
                         <select class="form-select" aria-label="Select color" id="color" name="color">
                             <option>Elige quien organiza el evento</option>
                             <check if="{{ @organiza=='#D4AF37' }}">
-                                <true>
-                                    <option value="#D4AF37" selected>Cofradía</option>
-                                </true>
-                                <else>
-                                    <option value="#D4AF37">Cofradía</option>
-                                </else>
+                                <option value="#D4AF37" selected>Cofradía</option>
+                            </check>
+                            <check if="{{ @organiza!='#D4AF37' }}">
+                                <option value="#D4AF37">Cofradía</option>
                             </check>
                             <check if="{{ @organiza=='#02cc24' }}">
-                                <true>
-                                    <option value="#02cc24" selected>Lagrimas y Favores</option>
-                                </true>
-                                <else>
-                                    <option value="#02cc24">Lagrimas y Favores</option>
-                                </else>
+                                <option value="#02cc24" selected>Lagrimas y Favores</option>
+                            </check>
+                            <check if="{{ @organiza!='#02cc24' }}">
+                                <option value="#02cc24">Lagrimas y Favores</option>
                             </check>
                             <check if="{{ @organiza=='#4903fc' }}">
-                                <true>
-                                    <option value="#4903fc" selected>Azotes y Columna</option>
-                                </true>
-                                <else>
-                                    <option value="#4903fc">Azotes y Columna</option>
-                                </else>
+                                <option value="#4903fc" selected>Azotes y Columna</option>
+                            </check>
+                            <check if="{{ @organiza!='#4903fc' }}">
+                                <option value="#4903fc">Azotes y Columna</option>
                             </check>
                             <check if="{{ @organiza=='#f70505' }}">
-                                <true>
-                                    <option value="#f70505" selected>Exaltación</option>
-                                </true>
-                                <else>
-                                    <option value="#f70505">Exaltación</option>
-                                </else>
+                                <option value="#f70505" selected>Exaltación</option>
+                            </check>
+                            <check if="{{ @organiza!='#f70505' }}">
+                                <option value="#f70505">Exaltación</option>
                             </check>
                             <check if="{{ @organiza=='#000000' }}">
-                                <true>
-                                    <option value="#000000" selected>Ánimas de ciegos</option>
-                                </true>
-                                <else>
-                                    <option value="#000000">Ánimas de ciegos</option>
-                                </else>
+                                <option value="#000000" selected>Ánimas de ciegos</option>
+                            </check>
+                            <check if="{{ @organiza!='#000000' }}">
+                                <option value="#000000">Ánimas de ciegos</option>
                             </check>
                             <check if="{{ @organiza=='#0062e3' }}">
-                                <true>
-                                    <option value="#0062e3" selected>Mayor Dolor</option>
-                                </true>
-                                <else>
-                                    <option value="#0062e3">Mayor Dolor</option>
-                                </else>
+                                <option value="#0062e3" selected>Mayor Dolor</option>
+                            </check>
+                            <check if="{{ @organiza!='#0062e3' }}">
+                                <option value="#0062e3">Mayor Dolor</option>
                             </check>
                             <check if="{{ @organiza=='#014a14' }}">
-                                <true>
-                                    <option value="#014a14">Vera+Cruz y Sangre</option>
-                                </true>
-                                <else>
-                                    <option value="#014a14">Vera+Cruz y Sangre</option>
-                                </else>
+                                <option value="#014a14" selected>Vera+Cruz y Sangre</option>
+                            </check>
+                            <check if="{{ @organiza!='#014a14' }}">
+                                <option value="#014a14">Vera+Cruz y Sangre</option>
                             </check>
                         </select>
                     </div>
@@ -111,7 +97,8 @@
                 <div class="col">
                     <div class="form-group mb-3">
                         <label for="ubicacion">Ubicación:</label>
-                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" required value="{{@evento.ubicacion}}">
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" required
+                            value="{{@evento.ubicacion}}">
                     </div>
                 </div>
             </div>
