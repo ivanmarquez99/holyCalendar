@@ -4,13 +4,6 @@ class AdminController extends Controller
 {
     function adminAsistencia($f3)
     {
-        if (\Base::instance()->exists('POST.select-project')) {
-            $information = $this->eventsInformation($f3);
-            $participantes = $this->participantesById($information['id']);
-
-            $f3->set('participantes', $participantes);
-            $f3->set('informacion', $information);
-        }
         $this->listEvents();
 
         if ($f3->get('SESSION.user_id')) {
@@ -94,14 +87,15 @@ class AdminController extends Controller
         return $evento_limpio;
     }
 
-    public function participantesById($eventId)
+    public function participantesById($f3)
     {
+        $eventId = $f3->get('POST.eventId');
 
         $participante = new Participantes($this->db);
 
         $participantes = $participante->getParticipantesbyId($eventId);
 
-        return $participantes;
+        echo json_encode($participantes);
     }
 
     public function asistenciaCheck($f3)

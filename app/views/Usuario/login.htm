@@ -51,3 +51,21 @@
     </div>
   </div>
 </section>
+
+<script>
+  window.addEventListener("load", function () {
+    var cambio = document.getElementById("password");
+    var eye = document.querySelector('#button-see')
+
+    eye.addEventListener("click", function () {
+
+        if (cambio.type == "password") {
+            cambio.type = "text";
+            eye.innerHTML = '<i class="bi bi-eye-fill"></i>';
+        } else {
+            cambio.type = "password";
+            eye.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
+        }
+    })
+})
+</script>

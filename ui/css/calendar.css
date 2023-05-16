@@ -56,28 +56,28 @@ ul.list-next-events {
   overflow: auto;
 }
 
-ul.list-next-events::-webkit-scrollbar {
+.scroll::-webkit-scrollbar, .dataTables_scrollBody::-webkit-scrollbar {
   -webkit-appearance: none;
 }
 
-ul.list-next-events::-webkit-scrollbar:vertical {
+.scroll::-webkit-scrollbar:vertical, .dataTables_scrollBody::-webkit-scrollbar:vertical {
   width:10px;
 }
 
-ul.list-next-events::-webkit-scrollbar-button:increment,ul.list-next-events::-webkit-scrollbar-button {
+.scroll::-webkit-scrollbar-button:increment,.scroll::-webkit-scrollbar-button, .dataTables_scrollBody::-webkit-scrollbar-button:increment, 
+.dataTables_scrollBody::-webkit-scrollbar-button{
   display: none;
 } 
 
-ul.list-next-events::-webkit-scrollbar:horizontal {
+.scroll::-webkit-scrollbar:horizontal,  .dataTables_scrollBody::-webkit-scrollbar:horizontal{
   height: 10px;
 }
 
-ul.list-next-events::-webkit-scrollbar-thumb {
+.scroll::-webkit-scrollbar-thumb, .dataTables_scrollBody::-webkit-scrollbar-thumb {
   background-color: #797979;
   border-radius: 20px;
-  border: 2px solid #f1f2f3;
 }
 
-ul.list-next-events::-webkit-scrollbar-track {
+.scroll::-webkit-scrollbar-track, .dataTables_scrollBody::-webkit-scrollbar-track {
   border-radius: 10px;  
 }

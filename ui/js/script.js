@@ -1,20 +1,4 @@
 window.addEventListener("load", function () {
-    var cambio = document.getElementById("password");
-    var eye = document.querySelector('#button-see')
-
-    eye.addEventListener("click", function () {
-
-        if (cambio.type == "password") {
-            cambio.type = "text";
-            eye.innerHTML = '<i class="bi bi-eye-fill"></i>';
-        } else {
-            cambio.type = "password";
-            eye.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
-        }
-    })
-})
-
-window.addEventListener("load", function () {
 
     tinymce.init({
         language: 'es',
@@ -119,3 +103,59 @@ function descriptionModal(id) {
 }
 
 
+function loadParticipants(eventId) {
+    $.ajax({
+        url: 'admin/asistentes',
+        type: 'POST',
+        data: { eventId: eventId },
+        success: function (response) {
+            var participantes = JSON.parse(response);
+            // Actualiza el contenido del modal con los participantes
+
+            var table = $('#participants');
+            var template = $('template').html();
+
+            // Limpia el contenido existente de la tabla
+            table.find('tbody').empty();
+
+            // Itera sobre los participantes y crea una fila por cada uno
+            for (var i = 0; i < participantes.length; i++) {
+                var participante = participantes[i];
+
+                // Crea una nueva fila y añade las celdas correspondientes
+                var tr = $('<tr>').appendTo(table);
+                $('<td>').text(participante.nombre_usuario).appendTo(tr);
+                $('<td>').text(participante.email).appendTo(tr);
+                $('<td>').text(participante.rol).appendTo(tr);
+                var newCell = $('<td>').html(template);
+                tr.append(newCell);
+                newCell.find('input:eq(1)').val(participante.id);
+                newCell.find('input:eq(2)').val(eventId);
+
+                if (participante.asistencia=="0") {
+                    newCell.find('input:first').val("true");
+                    newCell.find('#no-asistio').attr("disabled", true);
+                } else {
+                    newCell.find('input:first').val("false");
+                    newCell.find('#si-asistio').attr("disabled", true);
+                }
+            }
+        },
+        error: function () {
+            // Maneja los errores en caso de que la solicitud falle
+            console.log('Error al cargar los participantes');
+        }
+    });
+}
+
+// Función para abrir el modal y cargar los participantes al hacer clic en un evento
+function descriptionModal(eventId) {
+    // Obtiene el ID del evento desde el botón
+    var eventId = eventId.replace('descriptionModal', '');
+
+    // Carga los participantes del evento
+    loadParticipants(eventId);
+
+    // Abre el modal
+    $('#participantsModal').modal('show');
+}
