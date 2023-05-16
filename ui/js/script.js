@@ -1,20 +1,20 @@
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     var cambio = document.getElementById("password");
     var eye = document.querySelector('#button-see')
-    
-    eye.addEventListener("click", function() {
-        
-        if(cambio.type == "password"){
-          cambio.type = "text";
-          eye.innerHTML = '<i class="bi bi-eye-fill"></i>';
+
+    eye.addEventListener("click", function () {
+
+        if (cambio.type == "password") {
+            cambio.type = "text";
+            eye.innerHTML = '<i class="bi bi-eye-fill"></i>';
         } else {
-          cambio.type = "password";
-          eye.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
+            cambio.type = "password";
+            eye.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
         }
     })
 })
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
 
     tinymce.init({
         language: 'es',
@@ -29,16 +29,16 @@ window.addEventListener("load", function() {
 var minDate, maxDate;
 
 $.fn.dataTable.ext.search.push(
-    function( settings, data, dataIndex ) {
+    function (settings, data, dataIndex) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date( data[4] );
- 
+        var date = new Date(data[4]);
+
         if (
-            ( min === null && max === null ) ||
-            ( min === null && date <= max ) ||
-            ( min <= date   && max === null ) ||
-            ( min <= date   && date <= max )
+            (min === null && max === null) ||
+            (min === null && date <= max) ||
+            (min <= date && max === null) ||
+            (min <= date && date <= max)
         ) {
             return true;
         }
@@ -46,7 +46,7 @@ $.fn.dataTable.ext.search.push(
     }
 );
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     // Create date inputs
     minDate = new DateTime($('#min'), {
@@ -55,13 +55,16 @@ $(document).ready(function() {
     maxDate = new DateTime($('#max'), {
         format: 'YYYY-MM-DD',
     });
- 
+
     // DataTables initialisation
     var table = $('#myTable').DataTable({
         language: {
-          url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
-        }});
- 
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+        },
+        scrollY: '30vh',
+        scrollCollapse: true
+    });
+
     // Refilter the table
     $('#min, #max').on('change', function () {
         table.draw();
@@ -69,35 +72,35 @@ $(document).ready(function() {
 });
 
 function verificarPasswords() {
- 
-  
+
+
     // Ontenemos los valores de los campos de contraseñas 
     pass1 = document.getElementById('pass1');
     pass2 = document.getElementById('pass2');
- 
+
     // Verificamos si las constraseñas no coinciden 
     if (pass1.value != pass2.value) {
- 
+
         // Si las constraseñas no coinciden mostramos un mensaje 
         document.getElementById("error").classList.add("mostrar");
- 
+
         return false;
     } else {
- 
+
         // Si las contraseñas coinciden ocultamos el mensaje de error
         document.getElementById("error").classList.remove("mostrar");
- 
+
         // Mostramos un mensaje mencionando que las Contraseñas coinciden 
         document.getElementById("ok").classList.remove("ocultar");
- 
+
         // Desabilitamos el botón de login 
         document.getElementById("login").disabled = true;
- 
+
         // Refrescamos la página (Simulación de envío del formulario) 
-        setTimeout(function() {
+        setTimeout(function () {
             location.reload();
         }, 3000);
- 
+
         return true;
     }
 
@@ -106,11 +109,11 @@ function verificarPasswords() {
 
 function descriptionModal(id) {
 
-   var description = document.querySelector("#"+id).getAttribute('data-description');
-   document.querySelector("#eventDescription").innerHTML = description;
+    var description = document.querySelector("#" + id).getAttribute('data-description');
+    document.querySelector("#eventDescription").innerHTML = description;
 
-   let myModal = new bootstrap.Modal('#modalDescription', {
-    keyboard: false
+    let myModal = new bootstrap.Modal('#modalDescription', {
+        keyboard: false
     });
     myModal.show();
 }
