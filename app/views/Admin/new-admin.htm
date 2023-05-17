@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="bg-dark mt-3 p-4 text-light rounded-5">
-      <table class="table table-striped table-hover table-light" id="myTable" aria-describedby="myTable_info">
+      <table class="table table-striped table-hover table-light" id="myTable" aria-describedby="myTable_info" data-order='[[ 4, "asc" ]]'>
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -73,7 +73,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table class="table table-striped table-hover table-light" id="participants" aria-describedby="myTable_info">
+        <table class="table table-striped table-hover table-light participantsTable" id="myTable" aria-describedby="myTable_info">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -93,7 +93,6 @@
 
 <template>
   <form method="POST" action="admin/asistio">
-    <!-- Esto puede ser value true or false dependiendo si asistió o no -->
     <input type="hidden" value="" name="participa" id="participa">
     <input type="hidden" value="" name="userId">
     <input type="hidden" value="" name="eventId">

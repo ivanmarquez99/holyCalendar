@@ -1,5 +1,6 @@
 var minDate, maxDate;
 
+// Iniciamos el buscados de DataTables
 $.fn.dataTable.ext.search.push(
     function (settings, data, dataIndex) {
         var min = minDate.val();
@@ -18,9 +19,10 @@ $.fn.dataTable.ext.search.push(
     }
 );
 
+// Cuando la página esté cargada crea los inputs y inicializa la tabla
 $(document).ready(function () {
 
-    // Create date inputs
+    // Creamos los inputs de fecha
     minDate = new DateTime($('#min'), {
         format: 'YYYY-MM-DD'
     });
@@ -28,7 +30,7 @@ $(document).ready(function () {
         format: 'YYYY-MM-DD',
     });
 
-    // DataTables initialisation
+    // Inicializamos los dataTables
     var table = $('#myTable').DataTable({
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
@@ -37,7 +39,7 @@ $(document).ready(function () {
         scrollCollapse: true
     });
 
-    // Refilter the table
+    // Filtramos la tabla
     $('#min, #max').on('change', function () {
         table.draw();
     });

@@ -37,10 +37,13 @@ function verificarPasswords() {
 
 
 function descriptionModal(id) {
-
+    //Traemos la información de la descripción
     var description = document.querySelector("#" + id).getAttribute('data-description');
+
+    // La insertamos en eventDescription
     document.querySelector("#eventDescription").innerHTML = description;
 
+    // Mostramos el modal
     let myModal = new bootstrap.Modal('#modalDescription', {
         keyboard: false
     });
@@ -49,6 +52,8 @@ function descriptionModal(id) {
 
 
 function loadParticipants(eventId) {
+
+    // Petición ajax
     $.ajax({
         url: 'admin/asistentes',
         type: 'POST',
@@ -57,7 +62,7 @@ function loadParticipants(eventId) {
             var participantes = JSON.parse(response);
             // Actualiza el contenido del modal con los participantes
 
-            var table = $('#participants');
+            var table = $('.participantsTable');
             var template = $('template').html();
 
             // Limpia el contenido existente de la tabla
@@ -74,9 +79,12 @@ function loadParticipants(eventId) {
                 $('<td>').text(participante.rol).appendTo(tr);
                 var newCell = $('<td>').html(template);
                 tr.append(newCell);
+
+                // Añadimos a los inputs la información de participante y evento
                 newCell.find('input:eq(1)').val(participante.id);
                 newCell.find('input:eq(2)').val(eventId);
 
+                //Comprobamos si el usuario asistió y marcamos los botones
                 if (participante.asistencia=="0") {
                     newCell.find('input:first').val("true");
                     newCell.find('#no-asistio').attr("disabled", true);
@@ -85,6 +93,7 @@ function loadParticipants(eventId) {
                     newCell.find('#si-asistio').attr("disabled", true);
                 }
             }
+
         },
         error: function () {
             // Maneja los errores en caso de que la solicitud falle
