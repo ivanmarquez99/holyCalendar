@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-
+    var rol = document.querySelector('header').getAttribute('data-json');
     var events = document.getElementById('prodId').value;
     var ListNextEvent = document.querySelector('.list-next-events')
     var arrEvents = JSON.parse(events);
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dayGridMonth: 'Mes',
             dayGridWeek: 'Semana'
         },
-        eventClick: function (info) {
+        eventClick: function informationEvent(info) {
 
             document.getElementById('eventTitle').innerHTML = info.event.title;
             document.getElementById('eventDate').innerHTML = moment(info.event.start).format('DD/MM/YYYY');
@@ -62,8 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 )
                 .catch(err => console.error(err))
 
-            document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
-            document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
+            if (rol != "0") {
+                document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + info.event.id);
+                document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + info.event.id);
+            }
+
         },
         navLinks: true,
         navLinkDayClick: function (date, jsEvent) {
@@ -76,15 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     calendar.render();
-
-    tinymce.init({
-        language: 'es',
-        selector: '#descripcion',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-        toolbar: 'undo redo | blocks fontsize | bold italic underline strikethrough | link image media table | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name'
-    });
 
     var elementos = ListNextEvent.getElementsByTagName('li');
 
@@ -109,8 +103,37 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('eventUbication').innerHTML = encontrado.ubicacion;
             document.getElementById('id-event').value = encontrado.id;
 
-            document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + encontrado.id);
-            document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + encontrado.id);
+            if (rol != "0") {
+                document.getElementById('deleteEvent').setAttribute('formaction', 'agenda/eliminar/' + encontrado.id);
+                document.getElementById('editEvent').setAttribute('formaction', 'agenda/editar/' + encontrado.id);
+            }
+
+            var data = {
+                event: parseInt(document.getElementById('id-event').value),
+                user: parseInt(document.getElementById('id-user').value)
+            };
+
+            fetch("agenda/comprobarasistencia", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(
+                    res => {
+                        console.log(res);
+
+                        document.querySelector("#apuntarse").disabled = res;
+
+                        let myModal = new bootstrap.Modal('#eventModal', {
+                            keyboard: false
+                        });
+                        myModal.show();
+                    }
+                )
+                .catch(err => console.error(err))
 
             let myModal = new bootstrap.Modal('#eventModal', {
                 keyboard: false

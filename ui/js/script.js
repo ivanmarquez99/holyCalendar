@@ -1,59 +1,4 @@
-window.addEventListener("load", function () {
-
-    tinymce.init({
-        language: 'es',
-        selector: 'textarea',
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-        toolbar: 'undo redo | blocks fontsize | bold italic underline strikethrough | link image media table | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name'
-    });
-})
-
-var minDate, maxDate;
-
-$.fn.dataTable.ext.search.push(
-    function (settings, data, dataIndex) {
-        var min = minDate.val();
-        var max = maxDate.val();
-        var date = new Date(data[4]);
-
-        if (
-            (min === null && max === null) ||
-            (min === null && date <= max) ||
-            (min <= date && max === null) ||
-            (min <= date && date <= max)
-        ) {
-            return true;
-        }
-        return false;
-    }
-);
-
-$(document).ready(function () {
-
-    // Create date inputs
-    minDate = new DateTime($('#min'), {
-        format: 'YYYY-MM-DD'
-    });
-    maxDate = new DateTime($('#max'), {
-        format: 'YYYY-MM-DD',
-    });
-
-    // DataTables initialisation
-    var table = $('#myTable').DataTable({
-        language: {
-            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
-        },
-        scrollY: '30vh',
-        scrollCollapse: true
-    });
-
-    // Refilter the table
-    $('#min, #max').on('change', function () {
-        table.draw();
-    });
-});
+var rol =  document.querySelector('header').getAttribute('data-json');
 
 function verificarPasswords() {
 
@@ -149,7 +94,7 @@ function loadParticipants(eventId) {
 }
 
 // Función para abrir el modal y cargar los participantes al hacer clic en un evento
-function descriptionModal(eventId) {
+function participantsModal(eventId) {
     // Obtiene el ID del evento desde el botón
     var eventId = eventId.replace('descriptionModal', '');
 

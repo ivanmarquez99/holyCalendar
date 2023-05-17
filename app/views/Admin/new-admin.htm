@@ -3,11 +3,11 @@
     <div class="bg-dark text-light rounded-5 p-5 row">
       <h5>Filtrar por fechas</h5>
       <div class="form-group mb-2 col">
-        <label for="min" class="form-label">Fecha de inicio</label>
+        <label for="min" class="form-label">Fecha de comienzo</label>
         <input type="date" class="datetimepicker form-control" id="min" name="min">
       </div>
       <div class="form-group mb-2 col">
-        <label for="max" class="form-label">Fecha de inicio</label>
+        <label for="max" class="form-label">Fecha de fin</label>
         <input type="date" class="form-control" id="max" name="max" datepicker="false">
       </div>
     </div>
@@ -39,7 +39,7 @@
               <td>{{trim(@evento.ubication)}}</td>
               <td><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}" data-toggle="modal"
                   data-target="#participantsModal"
-                  onclick="descriptionModal(this.id); loadParticipants('{{ trim(@evento.id) }}');"><i
+                  onclick="participantsModal(this.id); loadParticipants('{{ trim(@evento.id) }}');"><i
                     class="bi bi-search"></i></button></td>
             </tr>
           </repeat>
@@ -101,3 +101,5 @@
     <button class="btn btn-danger" type="submit" id="no-asistio"><i class="bi bi-x-lg"></i></button>
   </form>
 </template>
+
+<script src="{{@BASE}}/ui/js/dataTables.js"></script>

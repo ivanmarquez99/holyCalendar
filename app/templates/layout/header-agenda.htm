@@ -26,7 +26,7 @@
 </head>
 
 <body>
-  <header>
+  <header data-json="{{ @SESSION.user_rol }}">
     <div id="tools" class="bg-dark d-flex flex-row-reverse align-items-center gap-3 px-3">
       <a href="{{@BASE}}/disconnect" class="btn btn-danger"><i class="bi bi-power"></i> Desconectar</a>
       <form action="{{@BASE}}/agenda/asistencias" method="POST">
