@@ -70,7 +70,8 @@ CREATE TABLE `events` (
   `hora_inicio` time NOT NULL,
   `fecha_fin` date NOT NULL,
   `hora_fin` time NOT NULL,
-  `color` varchar(255) DEFAULT '#3788d8'
+  `color` varchar(255) DEFAULT '#3788d8',
+  `ubicacion` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

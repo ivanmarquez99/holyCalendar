@@ -9,7 +9,7 @@ class AdminController extends Controller
         if ($f3->get('SESSION.user_id')) {
             $f3->set('tituloPagina', 'Panel de administración');
             echo \Template::instance()->render('../templates/layout/header-lista.htm');
-            echo \Template::instance()->render('Admin/new-admin.htm');
+            echo \Template::instance()->render('Admin/admin.htm');
             echo \Template::instance()->render('../templates/layout/footer.htm');
         } else {
             $f3->reroute('/');
