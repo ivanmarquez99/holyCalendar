@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
-        height: "95vh",
+        height: "93vh",
         locale: 'es',
         firstDay: 1,
         selectable: true,
