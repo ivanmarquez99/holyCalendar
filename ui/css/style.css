@@ -47,14 +47,6 @@ div#calendar {
   border-left: 1px solid #ddd;
 }
 
-select.form-select.form-select-sm {
-  color: white;
-}
-
-input.form-control.form-control-sm {
-  color: white;
-}
-
 #max, #min {
   display: block;
     width: 100%;
@@ -71,4 +63,12 @@ input.form-control.form-control-sm {
     appearance: none;
     border-radius: var(--bs-border-radius);
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.dataTables_wrapper .dataTables_length select {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: white;
+  padding: 4px;
 }
