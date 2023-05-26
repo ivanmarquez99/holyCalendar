@@ -106,11 +106,11 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `titulo`, `descripcion`, `fecha_inicio`, `hora_inicio`, `fecha_fin`, `hora_fin`, `color`) VALUES
-    (1, 'Procesión del Cristo de los Milagros', '<p>Procesión anual del <strong>Cristo de los Milagros</strong> por las calles de Málaga.</p>', '2023-06-15', '20:00', '2023-06-15', '23:00', '#D4AF37'),
-    (2, 'Vía Crucis Penitencial', '<p>Vía Crucis penitencial en la <u>Iglesia de San Juan</u>.</p>', '2023-07-05', '19:30', '2023-07-05', '21:30', '#02cc24'),
-    (3, 'Función Principal de Instituto', '<p>Función religiosa en honor al patrón de la cofradía.</p>', '2023-07-16', '11:00', '2023-07-16', '12:30', '#4903fc'),
-    (4, 'Besapié al Santísimo Cristo', '<p>Jornada de veneración al <strong>Santísimo Cristo</strong>.</p>', '2023-08-02', '09:00', '2023-08-02', '19:00', '#f70505'),
-    (5, 'Triduo Sacramental', '<p>Triduo sacramental en la <u>Capilla de los Dolores</u>.</p>', '2023-08-10', '19:00', '2023-08-12', '21:00', '#000000'),
+    (1, 'Procesión del Cristo de los Milagros', '<p>Procesión anual del <strong>Cristo de los Milagros</strong> por las calles de Málaga.</p>', '2023-05-15', '20:00', '2023-05-15', '23:00', '#D4AF37'),
+    (2, 'Vía Crucis Penitencial', '<p>Vía Crucis penitencial en la <u>Iglesia de San Juan</u>.</p>', '2023-05-05', '19:30', '2023-05-05', '21:30', '#02cc24'),
+    (3, 'Función Principal de Instituto', '<p>Función religiosa en honor al patrón de la cofradía.</p>', '2023-05-16', '11:00', '2023-05-16', '12:30', '#4903fc'),
+    (4, 'Besapié al Santísimo Cristo', '<p>Jornada de veneración al <strong>Santísimo Cristo</strong>.</p>', '2023-05-02', '09:00', '2023-05-02', '19:00', '#f70505'),
+    (5, 'Triduo Sacramental', '<p>Triduo sacramental en la <u>Capilla de los Dolores</u>.</p>', '2023-05-10', '19:00', '2023-05-12', '21:00', '#000000'),
     (6, 'Procesión de la Virgen de los Dolores', '<p>Procesión de la imagen de la <strong>Virgen de los Dolores</strong> por el centro histórico de la ciudad.</p>', '2023-08-15', '20:30', '2023-08-15', '23:30', '#0062e3'),
     (7, 'Festividad del Sagrado Corazón', '<p>Celebración de la festividad del <u>Sagrado Corazón de Jesús</u>.</p>', '2023-09-01', '18:00', '2023-09-01', '20:00', '#014a14'),
     (8, 'Besamanos a la Virgen del Carmen', '<p>Jornada de veneración a la <strong>Virgen del Carmen</strong>.</p>', '2023-09-08', '09:00', '2023-09-08', '21:00', '#D4AF37'),
