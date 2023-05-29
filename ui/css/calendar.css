@@ -81,10 +81,7 @@ ul.list-next-events {
 .scroll::-webkit-scrollbar-track, .dataTables_scrollBody::-webkit-scrollbar-track {
   border-radius: 10px;  
 }
-
-button.fc-myEvents-button.fc-button.fc-button-primary, 
-button.fc-inscriptions-button.fc-button.fc-button-primary,
-button.fc-newEvent-button.fc-button.fc-button-primary,
+ 
 button.fc-disconnect-button.fc-button.fc-button-primary,
 button.fc-listNextEvents-button.fc-button.fc-button-primary {
   font-family: 'bootstrap-icons' !important;
@@ -93,6 +90,12 @@ button.fc-listNextEvents-button.fc-button.fc-button-primary {
   color:var(--fc-button-bg-color);
   padding: 0;
   font-size: 2em;
+}
+
+button.fc-myEvents-button.fc-button.fc-button-primary, 
+button.fc-inscriptions-button.fc-button.fc-button-primary,
+button.fc-newEvent-button.fc-button.fc-button-primary {
+  font-family: 'bootstrap-icons' !important;
 }
 
 button.fc-disconnect-button.fc-button.fc-button-primary {
@@ -125,4 +128,8 @@ button.fc-listNextEvents-button.fc-button.fc-button-primary:hover {
   border-color: transparent;
   background-color: transparent;
   color: var(--fc-button-bg-color);
+}
+
+h2#fc-dom-1::first-letter {
+  text-transform: capitalize;
 }

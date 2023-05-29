@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     },
     headerToolbar: {
-      left: "listNextEvents prev,next today newEvent inscriptions",
+      left: "listNextEvents prev,next today newEvent,inscriptions",
       center: "title",
       right: "myEvents dayGridMonth,dayGridWeek,listMonth disconnect",
     },
