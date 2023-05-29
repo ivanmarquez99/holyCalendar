@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var events = document.getElementById("prodId").value;
   var ListNextEvent = document.querySelector(".list-next-events");
   var myEvents = document.querySelector("#myEvents");
-  var arrEvents = JSON.parse(events);
-  console.log(arrEvents);
 
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -13,7 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
     locale: "es",
     firstDay: 1,
     selectable: true,
-    events: arrEvents,
+    events: function(info, successCallback, failureCallback) {
+      // Realiza una llamada AJAX para obtener los eventos
+      $.ajax({
+        url: 'agenda/eventsList',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          // Llama al callback de éxito y pasa los eventos obtenidos
+          successCallback(response);
+        },
+        error: function(xhr, status, error) {
+          // Llama al callback de error en caso de que falle la solicitud AJAX
+          failureCallback(error);
+        }
+      });
+    },
     customButtons: {
       myEvents: {
         text: "\uF214",

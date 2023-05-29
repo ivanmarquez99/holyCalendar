@@ -25,7 +25,6 @@ class AgendaController extends Controller
     if ($f3->get('SESSION.user_id')) {
 
       $this->inscritos();
-      $this->getEvents();
       $this->nextEvents();
 
       $f3->set('tituloPagina', 'holyCalendar');
@@ -59,9 +58,7 @@ class AgendaController extends Controller
     }
 
     // Convertir el arreglo de eventos en formato JSON
-    $eventos_json = json_encode($eventos_formateados);
-    // Devolver los datos en formato JSON
-    $this->f3->set('json_events', $eventos_json);
+    echo json_encode($eventos_formateados);
   }
 
   public function eliminarEvento($f3, $params)
