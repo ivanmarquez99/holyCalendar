@@ -17,13 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,dayGridWeek'
+            right: 'dayGridMonth,dayGridWeek,listMonth'
         },
-        buttonText: {
-            today: 'Hoy',
-            dayGridMonth: 'Mes',
-            dayGridWeek: 'Semana'
-        },
+        navLinkHint: "Ir al $0",
         eventClick: function informationEvent(info) {
 
             document.getElementById('eventTitle').innerHTML = info.event.title;

@@ -69,6 +69,14 @@ div#calendar {
   border: 1px solid #aaa;
   border-radius: 3px;
   padding: 5px;
-  background-color: white;
+  background-color: white !important;
   padding: 4px;
+}
+
+input.form-control.form-control-sm {
+  background: white !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0 !important;
 }
