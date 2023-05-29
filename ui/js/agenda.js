@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   var rol = document.querySelector("header").getAttribute("data-json");
-  var events = document.getElementById("prodId").value;
   var ListNextEvent = document.querySelector(".list-next-events");
-  var myEvents = document.querySelector("#myEvents");
+  var arrEvents = [];
 
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -20,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         success: function(response) {
           // Llama al callback de éxito y pasa los eventos obtenidos
           successCallback(response);
+          response.forEach(element => arrEvents.push(element))
         },
         error: function(xhr, status, error) {
           // Llama al callback de error en caso de que falle la solicitud AJAX

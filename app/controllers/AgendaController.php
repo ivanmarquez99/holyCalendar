@@ -142,9 +142,6 @@ class AgendaController extends Controller
     }
 
     $participantsJson = json_encode($participantes_formateados);
-
-    // Pasar los participantes a la vista
-    $this->f3->set('participants_json', $participantsJson);
   }
 
   public function nextEvents()
