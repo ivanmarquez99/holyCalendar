@@ -20,7 +20,7 @@ class AsistenciaController extends Controller
 
     public function asistenciaList($f3)
     {
-        $usuarioId = $this->f3->get('POST.id-user');
+        $usuarioId = $this->f3->get('SESSION.user_id');
 
         // Crear una instancia del modelo de participantes
         $participante = new Participantes($this->db);

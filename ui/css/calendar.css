@@ -48,11 +48,11 @@ text-overflow: ellipsis;
 
 div#list-events {
   padding-right: 0;
-  height: 80vh;
+  height: 100vh;
 }
 
 ul.list-next-events {
-  height: 100%;
+  height: 85%;
   overflow: auto;
 }
 
@@ -80,4 +80,49 @@ ul.list-next-events {
 
 .scroll::-webkit-scrollbar-track, .dataTables_scrollBody::-webkit-scrollbar-track {
   border-radius: 10px;  
+}
+
+button.fc-myEvents-button.fc-button.fc-button-primary, 
+button.fc-inscriptions-button.fc-button.fc-button-primary,
+button.fc-newEvent-button.fc-button.fc-button-primary,
+button.fc-disconnect-button.fc-button.fc-button-primary,
+button.fc-listNextEvents-button.fc-button.fc-button-primary {
+  font-family: 'bootstrap-icons' !important;
+  border-color: transparent;
+  background-color: transparent;
+  color:var(--fc-button-bg-color);
+  padding: 0;
+  font-size: 2em;
+}
+
+button.fc-disconnect-button.fc-button.fc-button-primary {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+    border-radius: 0.25em;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.4em 0.65em;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+}
+
+button.fc-listNextEvents-button.fc-button.fc-button-primary {
+  border-color: transparent;
+  background-color: transparent;
+  color:var(--fc-button-bg-color);
+  box-shadow: none;
+  padding: 0;
+  font-size: 2em;
+}
+
+button.fc-listNextEvents-button.fc-button.fc-button-primary:hover {
+  border-color: transparent;
+  background-color: transparent;
+  color: var(--fc-button-bg-color);
 }

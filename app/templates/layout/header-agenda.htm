@@ -22,19 +22,4 @@
 </head>
 
 <body>
-  <header data-json="{{ @SESSION.user_rol }}">
-    <div id="tools" class="bg-dark d-flex flex-row-reverse align-items-center gap-3 px-3">
-      <a href="{{@BASE}}/disconnect" class="btn btn-danger"><i class="bi bi-power"></i> Desconectar</a>
-      <form action="{{@BASE}}/agenda/asistencias" method="POST">
-        <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
-        <button type="submit" class="btn btn-light"><i class="bi bi-calendar3"></i> Mis eventos</button>
-      </form>
-      <a href="{{@BASE}}/agenda" class="btn btn-success"><i class="bi bi-house"></i> Inicio</a>
-      <check if="{{ @SESSION.user_rol==1 AND @tituloPagina == 'holyCalendar' }}">
-        <a href="{{@BASE}}/agenda/admin" class="btn btn-secondary me-auto"><i class="bi bi-pencil-square"></i>
-          Inscripciones</a>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalFechas"><i
-            class="bi bi-calendar-plus"></i> Nuevo evento</a>
-      </check>
-    </div>
-  </header>
+  <header data-json="{{ @SESSION.user_rol }}"></header>
