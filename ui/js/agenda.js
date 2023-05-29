@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Llama al callback de éxito y pasa los eventos obtenidos
           successCallback(response);
           response.forEach(element => arrEvents.push(element))
+          console.log(response); 
         },
         error: function(xhr, status, error) {
           // Llama al callback de error en caso de que falle la solicitud AJAX
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text: "\uF214",
         hint: "Tus eventos",
         click: function () {
-          location.replace("/holyCalendar/agenda/asistencias");
+          location.replace("agenda/asistencias");
         },
       },
       newEvent: {

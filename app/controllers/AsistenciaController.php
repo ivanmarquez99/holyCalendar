@@ -76,7 +76,7 @@ class AsistenciaController extends Controller
         if ($inscripcion->eliminarInscripcion($usuarioId, $eventoId)) {
             // Redirigir a la página de eventos
             echo "Está funcionando";
-            $f3->reroute('/agenda');
+            $f3->reroute('agenda/asistencias');
         } else {
             echo "No está funcionando";
         }

@@ -20,8 +20,12 @@ table.fc-col-header a {
   text-transform: uppercase;
 }
 
-a.fc-event.fc-event-start.fc-event-end.fc-daygrid-event.fc-daygrid-dot-event {
+.fc-event{
   cursor: pointer;
+}
+
+a.fc-list-day-side-text {
+  text-transform: capitalize;
 }
 
 .next-event {
