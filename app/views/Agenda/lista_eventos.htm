@@ -1,70 +1,77 @@
 <main id="background">
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <h4 class="m-3 pb-1 text-white">
-          <span class="text-primary">holy</span>Calendar
-        </h4>
-      </a>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="/" class="nav-link text-white" aria-current="page">
-            <i class="bi bi-house me-2"></i>Inicio
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link active">
-            <i class="bi bi-calendar3 me-2"></i>Mis eventos
-          </a>
-        </li>
-      </ul>
-      <hr>
-      <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="/ui/images/user.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>{{@SESSION.user_name}}</strong>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <h4 class="m-3 pb-1 text-white">
+        <span class="text-primary">holy</span>Calendar
+      </h4>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/" class="nav-link text-white" aria-current="page">
+          <i class="bi bi-house me-2"></i>Inicio
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li><a class="dropdown-item" href="{{@BASE}}/disconnect">Desconectar</a></li>
-        </ul>
-      </div>
+      </li>
+      <li>
+        <a href="#" class="nav-link active">
+          <i class="bi bi-calendar3 me-2"></i>Mis eventos
+        </a>
+      </li>
+      <check if="{{ @SESSION.user_rol==1 }}"></check>
+      <li>
+        <a href="admin" class="nav-link text-white">
+          <i class="bi bi-pencil-square me-2"></i>Administración
+        </a>
+      </li>
+      </check>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="/ui/images/user.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>{{@SESSION.user_name}}</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="{{@BASE}}/disconnect">Desconectar</a></li>
+      </ul>
     </div>
-
-      <div class="bg-dark p-5 rounded-4 text-white m-5 w-100 d-flex flex-column align-content-center">
-        <h1 class="text-start mb-5 p-2">Eventos en los que participas</h1>
-        <table class="table table-light display p-2" id="myTable">
-          <thead>
-            <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Fecha de Inicio</th>
-              <th scope="col">Hora de Inicio</th>
-              <th scope="col">Organizador</th>
-              <th scope="col" class="text-center">Asistencia</th>
-            </tr>
-          </thead>
-          <tbody>
-            <repeat group="{{ @listEvents }}" value="{{ @event }}">
-              <tr>
-                <td>{{ trim(@event.title) }}</td>
-                <td><button class="btn btn-primary" id="descriptionModal{{ trim(@event.id) }}"
-                    data-description="{{ trim(@event.description) }}" onclick="descriptionModal(this.id)">Ver
-                    descripción</button></td>
-                <td>{{ trim(@event.date) }}</td>
-                <td>{{ trim(@event.hour) }}</td>
-                <td>{{ trim(@event.color) }}</td>
-                <td class="text-center">
-                  <form action="asistencias/eliminar" method="POST">
-                    <input type="hidden" value="{{ trim(@event.id) }}" name="id-event">
-                    <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
-                    <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
-                  </form>
-                </td>
-              </tr>
-            </repeat>
-          </tbody>
-        </table>
-      </div>
+  </div>
+  <div class="bg-dark p-5 rounded-4 text-white m-5 w-100 d-flex flex-column align-content-center">
+    <h1 class="text-start mb-5 p-2">Eventos en los que participas</h1>
+    <table class="table table-light display p-2" id="myTable">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Fecha de Inicio</th>
+          <th scope="col">Hora de Inicio</th>
+          <th scope="col">Organizador</th>
+          <th scope="col" class="text-center">Asistencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <repeat group="{{ @listEvents }}" value="{{ @event }}">
+          <tr>
+            <td>{{ trim(@event.title) }}</td>
+            <td><button class="btn btn-primary" id="descriptionModal{{ trim(@event.id) }}"
+                data-description="{{ trim(@event.description) }}" onclick="descriptionModal(this.id)">Ver
+                descripción</button></td>
+            <td>{{ trim(@event.date) }}</td>
+            <td>{{ trim(@event.hour) }}</td>
+            <td>{{ trim(@event.color) }}</td>
+            <td class="text-center">
+              <form action="asistencias/eliminar" method="POST">
+                <input type="hidden" value="{{ trim(@event.id) }}" name="id-event">
+                <input type="hidden" value="{{ @SESSION.user_id }}" name="id-user">
+                <button class="btn btn-danger" type="submit"><i class="bi bi-trash"></i></button>
+              </form>
+            </td>
+          </tr>
+        </repeat>
+      </tbody>
+    </table>
+  </div>
 </main>
 <div class="modal fade" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="modalDescription"
   aria-hidden="true">

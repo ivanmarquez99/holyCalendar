@@ -1,52 +1,88 @@
-<div id="background" class="vh-100">
-  <div class="d-flex flex-column w-75 m-auto p-3">
-    <div class="bg-dark text-light rounded-5 p-3 row">
+<main id="background" class="overflow-x-hidden">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+      <h4 class="m-3 pb-1 text-white">
+        <span class="text-primary">holy</span>Calendar
+      </h4>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="/" class="nav-link text-white" aria-current="page">
+          <i class="bi bi-house me-2"></i>Inicio
+        </a>
+      </li>
+      <li>
+        <a href="asistencias" class="nav-link text-white">
+          <i class="bi bi-calendar3 me-2"></i>Mis eventos
+        </a>
+      </li>
+      <li>
+        <a href="admin" class="nav-link active">
+          <i class="bi bi-pencil-square me-2"></i>Administración
+        </a>
+      </li>
+    </ul>
+    <hr>
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="/ui/images/user.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <strong>{{@SESSION.user_name}}</strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="{{@BASE}}/disconnect">Desconectar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bg-dark p-5 rounded-4 text-white mx-3 my-5 w-100">
+    <div class="row">
       <h5>Filtrar por fechas</h5>
       <div class="form-group mb-2 col">
         <label for="min" class="form-label">Fecha de comienzo</label>
         <input type="date" class="datetimepicker form-control" id="min" name="min">
       </div>
-      <div class="form-group mb-2 col">
+      <div class="form-group mb-5 col">
         <label for="max" class="form-label">Fecha de fin</label>
         <input type="date" class="form-control" id="max" name="max" datepicker="false">
       </div>
     </div>
-    <div class="bg-dark mt-3 p-4 text-light rounded-5 text-white">
-      <table class="table table-striped table-hover table-light" id="myTable" aria-describedby="myTable_info" data-order='[[ 4, "asc" ]]'>
-        <thead>
+    <table class="table table-striped table-hover table-light " id="myTable" aria-describedby="myTable_info"
+      data-order='[[ 4, "asc" ]]'>
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Organizador</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Hora de inicio</th>
+          <th scope="col">Ubicación</th>
+          <th scope="col">Participantes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <repeat group="{{ @anteriores_eventos }}" value="{{ @evento }}">
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Organizador</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Hora de inicio</th>
-            <th scope="col">Ubicación</th>
-            <th scope="col">Participantes</th>
+            <th>{{trim(@evento.id)}}</th>
+            <th>{{trim(@evento.title)}}</th>
+            <td><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}"
+                data-description="{{ trim(@evento.description) }}" onclick="descriptionModal(this.id)">Ver
+                descripción</button></td>
+            <td>{{trim(@evento.organizer)}}</td>
+            <td>{{trim(@evento.date)}}</td>
+            <td>{{trim(@evento.hour)}}</td>
+            <td>{{trim(@evento.ubication)}}</td>
+            <td><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}" data-toggle="modal"
+                data-target="#participantsModal"
+                onclick="participantsModal(this.id); loadParticipants('{{ trim(@evento.id) }}');">
+                <i class="bi bi-search"></i></button></td>
           </tr>
-        </thead>
-        <tbody>
-          <repeat group="{{ @anteriores_eventos }}" value="{{ @evento }}">
-            <tr>
-              <th>{{trim(@evento.id)}}</th>
-              <th>{{trim(@evento.title)}}</th>
-              <td><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}"
-                  data-description="{{ trim(@evento.description) }}" onclick="descriptionModal(this.id)">Ver
-                  descripción</button></td>
-              <td>{{trim(@evento.organizer)}}</td>
-              <td>{{trim(@evento.date)}}</td>
-              <td>{{trim(@evento.hour)}}</td>
-              <td>{{trim(@evento.ubication)}}</td>
-              <td><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}" data-toggle="modal"
-                  data-target="#participantsModal" onclick="participantsModal(this.id); loadParticipants('{{ trim(@evento.id) }}');">
-                  <i class="bi bi-search"></i></button></td>
-            </tr>
-          </repeat>
-        </tbody>
-      </table>
-    </div>
+        </repeat>
+      </tbody>
+    </table>
   </div>
-</div>
+</main>
 
 <div class="modal fade" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="modalDescription"
   aria-hidden="true">
@@ -72,7 +108,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table class="table table-striped table-hover table-light participantsTable" id="myTable" aria-describedby="myTable_info">
+        <table class="table table-striped table-hover table-light participantsTable" id="myTable"
+          aria-describedby="myTable_info">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
