@@ -18,10 +18,6 @@ button#apuntarse {
   margin-bottom: 1em;
 }
 
-.col-10 {
-  padding-left: 0 !important;
-}
-
 #list-events li {
   transition: all 0.5s;
 }
@@ -79,4 +75,18 @@ input.form-control.form-control-sm {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   padding: 0 !important;
+}
+
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+*, ::after, ::before {
+  box-sizing: border-box;
 }

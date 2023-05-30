@@ -31,6 +31,7 @@ class LoginController extends Controller
       // Iniciar sesión y redirigir al usuario a la página de inicio
       $f3->set('SESSION.user_id', $user->id);
       $f3->set('SESSION.user_rol', $user->rol);
+      $f3->set('SESSION.user_name', $user->nombre_usuario);
       $f3->reroute('/agenda');
     }
   }
