@@ -90,3 +90,7 @@ main {
 *, ::after, ::before {
   box-sizing: border-box;
 }
+
+#container {
+  width: 80%
+}

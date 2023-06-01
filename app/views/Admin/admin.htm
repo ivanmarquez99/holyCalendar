@@ -1,5 +1,5 @@
-<main id="background" class="overflow-x-hidden">
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
+<main id="background">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <h4 class="m-3 pb-1 text-white">
         <span class="text-primary">holy</span>Calendar
@@ -35,30 +35,30 @@
       </ul>
     </div>
   </div>
-  <div class="bg-dark p-5 rounded-4 text-white mx-3 my-5 w-100">
+  <div class="bg-dark p-4 rounded-4 text-white m-auto d-flex flex-column align-content-center" id="container">
     <div class="row">
       <h5>Filtrar por fechas</h5>
-      <div class="form-group mb-2 col">
+      <div class="form-group mb-3 col">
         <label for="min" class="form-label">Fecha de comienzo</label>
         <input type="date" class="datetimepicker form-control" id="min" name="min">
       </div>
-      <div class="form-group mb-5 col">
+      <div class="form-group mb-3 col">
         <label for="max" class="form-label">Fecha de fin</label>
         <input type="date" class="form-control" id="max" name="max" datepicker="false">
       </div>
     </div>
-    <table class="table table-striped table-hover table-light " id="myTable" aria-describedby="myTable_info"
-      data-order='[[ 4, "asc" ]]'>
+    <table class="table table-striped table-hover table-light table-responsive" id="myTable"
+      aria-describedby="myTable_info" data-order='[[ 4, "asc" ]]'>
       <thead>
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Descripción</th>
           <th scope="col">Organizador</th>
           <th scope="col">Fecha</th>
           <th scope="col">Hora de inicio</th>
           <th scope="col">Ubicación</th>
           <th scope="col">Participantes</th>
+          <th scope="col">Descripción</th>
         </tr>
       </thead>
       <tbody>
@@ -66,9 +66,6 @@
           <tr>
             <th>{{trim(@evento.id)}}</th>
             <th>{{trim(@evento.title)}}</th>
-            <td><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}"
-                data-description="{{ trim(@evento.description) }}" onclick="descriptionModal(this.id)">Ver
-                descripción</button></td>
             <td>{{trim(@evento.organizer)}}</td>
             <td>{{trim(@evento.date)}}</td>
             <td>{{trim(@evento.hour)}}</td>
@@ -77,6 +74,9 @@
                 data-target="#participantsModal"
                 onclick="participantsModal(this.id); loadParticipants('{{ trim(@evento.id) }}');">
                 <i class="bi bi-search"></i></button></td>
+            <td><button class="btn btn-primary" id="descriptionModal{{ trim(@evento.id) }}"
+                data-description="{{ trim(@evento.description) }}" onclick="descriptionModal(this.id)"><i
+                  class="bi bi-search"></i></button></td>
           </tr>
         </repeat>
       </tbody>
