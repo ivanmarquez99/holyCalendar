@@ -38,7 +38,7 @@ function verificarPasswords() {
 
 function descriptionModal(id) {
     //Traemos la información de la descripción
-    var description = document.querySelector("#" + id).getAttribute('data-description');
+    var description = document.getElementById(id).getAttribute('data-description');
 
     // La insertamos en eventDescription
     document.querySelector("#eventDescription").innerHTML = description;
@@ -105,10 +105,10 @@ function loadParticipants(eventId) {
 // Función para abrir el modal y cargar los participantes al hacer clic en un evento
 function participantsModal(eventId) {
     // Obtiene el ID del evento desde el botón
-    var eventId = eventId.replace('descriptionModal', '');
+    var eventoId = eventId.replace('participantsModal', '');
 
     // Carga los participantes del evento
-    loadParticipants(eventId);
+    loadParticipants(eventoId);
 
     // Abre el modal
     $('#participantsModal').modal('show');
